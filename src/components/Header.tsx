@@ -8,7 +8,7 @@ function Header() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/restaurants">식당목록</Link>
+          <Link to="/restaurants">식당 목록</Link>
         </li>
         <li>
           <Link to="/cart">장바구니</Link>
