@@ -22,7 +22,7 @@ describe('App', () => {
     it('renders the restaurants” page', () => {
       renderRouter('/restaurants');
 
-      screen.getByText(/혹동고래카레/);
+      screen.getByText(/혹등고래카레/);
     });
   });
 
