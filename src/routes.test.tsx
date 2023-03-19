@@ -4,7 +4,7 @@ import routes from './routes';
 
 const context = describe;
 
-describe('App ', () => {
+describe('Routes ', () => {
   function renderRouter(path:string) {
     const router = createMemoryRouter(routes, { initialEntries: [path] });
     render(
