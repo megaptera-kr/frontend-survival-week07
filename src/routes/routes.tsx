@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import Layout from '../components/Layout';
 import CartPage from '../pages/Cart.page';
 import OrderPage from '../pages/Order.page';
