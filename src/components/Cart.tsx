@@ -13,7 +13,7 @@ export default function Cart() {
   const handleClickOrder = async () => {
     // eslint-disable-next-line no-alert
     alert('주문완료!');
-    navigate('/order/complete');
+    navigate('/order');
   };
 
   return (
