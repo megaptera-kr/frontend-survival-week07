@@ -1,16 +1,11 @@
-import Restaurants from './components/Restaurants';
-import Cart from './components/Cart';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import useFetchRestaurants from './hooks/useFetchRestaurants';
+import routes from './routes';
 
 export default function App() {
-  const restaurants = useFetchRestaurants();
+  const router = createBrowserRouter(routes);
 
   return (
-    <div>
-      <h1>어서오세요, 메가의 민족입니다</h1>
-      <Restaurants restaurants={restaurants} />
-      <Cart />
-    </div>
+    <RouterProvider router={router} />
   );
 }
