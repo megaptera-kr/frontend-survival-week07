@@ -11,11 +11,11 @@ function main() {
 
   const root = ReactDOM.createRoot(element);
 
-  root.render((
+  root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>
-  ));
+    </React.StrictMode>,
+  );
 }
 
 main();
