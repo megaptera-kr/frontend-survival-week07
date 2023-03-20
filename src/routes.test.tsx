@@ -22,7 +22,7 @@ describe('routes', () => {
     it('renders RestaurantList page', () => {
       renderRouter('/list');
 
-      screen.getByText(/식당 목록/);
+      screen.getByText(/메가/);
     });
   });
 
