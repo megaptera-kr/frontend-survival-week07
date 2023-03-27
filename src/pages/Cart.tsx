@@ -1,20 +1,24 @@
-import MenuItem from './MenuItem';
+import { useNavigate } from 'react-router-dom';
+import MenuItem from '../components/MenuItem';
 
 import useCartStore from '../hooks/useCartStore';
 
 export default function Cart() {
+  const navigate = useNavigate();
   const [snapshot] = useCartStore();
   const { items } = snapshot;
 
   const totalPrice = items.reduce((acc, food) => acc + (food.price * food.quantity), 0);
 
   const handleClickOrder = async () => {
-    // eslint-disable-next-line no-alert
-    alert('주문완료!');
+    navigate('/order');
   };
 
   return (
     <div style={{ marginBottom: '3rem' }}>
+      <h1>
+        장바구니
+      </h1>
       <h2>
         점심 바구니
       </h2>

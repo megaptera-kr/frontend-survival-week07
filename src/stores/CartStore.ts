@@ -40,4 +40,9 @@ export default class CartStore extends Store<CartStoreSnapshot> {
       items: this.cart.items,
     };
   }
+
+  order() {
+    this.cart = new Cart();
+    this.update();
+  }
 }

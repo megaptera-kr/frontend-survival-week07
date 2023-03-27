@@ -3,10 +3,10 @@ import Menu from './Menu';
 import Restaurant from '../models/Restaurant';
 
 type RestaurantProps = {
-  restaurants: Restaurant[];
+  restaurant: Restaurant;
 };
 
-export default function Restaurants({ restaurants }: RestaurantProps) {
+export default function Restaurants({ restaurant }: RestaurantProps) {
   return (
     <div>
       <table>
@@ -24,19 +24,17 @@ export default function Restaurants({ restaurants }: RestaurantProps) {
           </tr>
         </thead>
         <tbody>
-          {restaurants.map((restaurant) => (
-            <tr key={restaurant.id}>
-              <td>
-                {restaurant.name}
-              </td>
-              <td>
-                {restaurant.category}
-              </td>
-              <td>
-                <Menu menu={restaurant.menu} />
-              </td>
-            </tr>
-          ))}
+          <tr key={restaurant.id}>
+            <td>
+              {restaurant.name}
+            </td>
+            <td>
+              {restaurant.category}
+            </td>
+            <td>
+              <Menu menu={restaurant.menu} />
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
