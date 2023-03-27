@@ -38,7 +38,7 @@ describe('routes', () => {
     it('renders the order page', () => {
       renderRouter('/order');
 
-      screen.getAllByText(/이대로 주문하시겠습니까?/);
+      screen.getAllByText(/이대로 주문하시겠어요?/);
     });
   });
 });

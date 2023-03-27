@@ -17,7 +17,7 @@ export default function Order() {
   return (
     <div style={{ marginBottom: '3rem' }}>
       <h1>
-        이대로 주문하시겠습니까?
+        이대로 주문하시겠어요?
       </h1>
 
       <ul style={{ width: '20%' }}>
