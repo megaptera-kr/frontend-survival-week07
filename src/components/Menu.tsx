@@ -1,9 +1,6 @@
 import { HTMLAttributes } from 'react';
-
 import MenuItem from './MenuItem';
-
 import useCartStore from '../hooks/useCartStore';
-
 import Food from '../models/Food';
 
 type MenuProps = {
