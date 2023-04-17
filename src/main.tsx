@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import App from './App';
+import { routes } from './routes/routes';
 
 function main() {
   const element = document.getElementById('root');
@@ -11,11 +12,13 @@ function main() {
 
   const root = ReactDOM.createRoot(element);
 
-  root.render((
+  const router = createBrowserRouter(routes);
+
+  root.render(
     <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  ));
+      <RouterProvider router={router} />
+    </React.StrictMode>,
+  );
 }
 
 main();
