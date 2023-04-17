@@ -1,23 +1,25 @@
-import MenuItem from './MenuItem';
+import { useNavigate } from 'react-router-dom';
+
+import MenuItem from '../components/MenuItem';
 
 import useCartStore from '../hooks/useCartStore';
 
-export default function Cart() {
-  const [snapshot] = useCartStore();
+export default function Order() {
+  const navigate = useNavigate();
+  const [snapshot, cartStore] = useCartStore();
   const { items } = snapshot;
 
-  const totalPrice = items.reduce((acc, food) => acc + (food.price * food.quantity), 0);
-
-  const handleClickOrder = async () => {
-    // eslint-disable-next-line no-alert
-    alert('주문완료!');
+  const handleClickOrder = () => {
+    cartStore.order();
+    navigate('/orderComplete');
   };
 
   return (
     <div style={{ marginBottom: '3rem' }}>
-      <h2>
-        점심 바구니
-      </h2>
+      <h1>
+        이대로 주문하시겠어요?
+      </h1>
+
       <ul style={{ width: '20%' }}>
         {items.map((item, index) => {
           const {
@@ -45,10 +47,7 @@ export default function Cart() {
         type="button"
         onClick={handleClickOrder}
       >
-        합계:
-        {' '}
-        {totalPrice.toLocaleString()}
-        원 주문
+        결제
       </button>
     </div>
   );
