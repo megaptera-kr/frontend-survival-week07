@@ -16,4 +16,8 @@ describe('routes', () => {
   it('should render the RestaurantListPage without crash', () => {
     renderRouter('/restaurants');
   });
+
+  it('should render the RestaurantDetailPage without crash', () => {
+    renderRouter('/restaurants/1');
+  });
 });

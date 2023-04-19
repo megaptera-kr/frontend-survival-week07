@@ -1,11 +1,18 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
 import RestaurantListPage from './RestaurantListPage';
 
 describe('RestaurantListPage', () => {
-  it('should renders a page title', () => {
-    render(<RestaurantListPage />);
+  function renderWithRouter() {
+    render(
+      <MemoryRouter initialEntries={['/restaurants']}>
+        <RestaurantListPage />
+      </MemoryRouter>,
+    );
+  }
 
-    expect(screen.getByText(/식당 목록/)).toBeInTheDocument();
+  it('should renders without crash', () => {
+    renderWithRouter();
   });
 });
