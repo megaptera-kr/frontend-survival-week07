@@ -1,7 +1,13 @@
 import App from './App';
+import Layout from './Layout';
 
 const routes = [
-  { path: '/', element: <App /> },
+  {
+    element: <Layout />,
+    children: [
+      { path: '/', element: <App /> },
+    ],
+  },
 ];
 
 export default routes;
