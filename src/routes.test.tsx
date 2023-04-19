@@ -20,4 +20,8 @@ describe('routes', () => {
   it('should render the RestaurantDetailPage without crash', () => {
     renderRouter('/restaurants/1');
   });
+
+  it('should render the CartPage without crash', () => {
+    renderRouter('/cart');
+  });
 });
