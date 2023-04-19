@@ -1,6 +1,7 @@
 import Layout from './Layout';
 import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
+import OrderCompletePage from './pages/OrderCompletePage';
 import OrderPage from './pages/OrderPage';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
 import RestaurantListPage from './pages/RestaurantListPage';
@@ -14,6 +15,7 @@ const routes = [
       { path: '/restaurants/:restaurantId', element: <RestaurantDetailPage /> },
       { path: '/cart', element: <CartPage /> },
       { path: '/order', element: <OrderPage /> },
+      { path: '/complete', element: <OrderCompletePage /> },
     ],
   },
 ];

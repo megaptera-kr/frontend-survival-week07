@@ -28,4 +28,8 @@ describe('routes', () => {
   it('should render the OrderPage without crash', () => {
     renderRouter('/order');
   });
+
+  it('should render the OrderCompletePage without crash', () => {
+    renderRouter('/complete');
+  });
 });
