@@ -24,4 +24,8 @@ describe('routes', () => {
   it('should render the CartPage without crash', () => {
     renderRouter('/cart');
   });
+
+  it('should render the OrderPage without crash', () => {
+    renderRouter('/order');
+  });
 });
