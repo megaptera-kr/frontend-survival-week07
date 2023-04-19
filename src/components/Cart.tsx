@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
 import MenuItem from './MenuItem';
 
 import useCartStore from '../hooks/useCartStore';
+import PATH from '../constants/path';
 
 export default function Cart() {
+  const navigate = useNavigate();
+
   const [snapshot] = useCartStore();
   const { items } = snapshot;
 
@@ -10,7 +15,9 @@ export default function Cart() {
 
   const handleClickOrder = async () => {
     // eslint-disable-next-line no-alert
-    alert('주문완료!');
+    if (!items.length) return;
+
+    navigate(PATH.order);
   };
 
   return (
@@ -43,6 +50,8 @@ export default function Cart() {
       </ul>
       <button
         type="button"
+        aria-label="주문하기"
+        disabled={!items.length}
         onClick={handleClickOrder}
       >
         합계:
