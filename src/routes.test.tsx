@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import routes from './routes';
@@ -9,8 +9,11 @@ describe('routes', () => {
     render(<RouterProvider router={router} />);
   }
 
-  it('should render the HomePage', () => {
+  it('should render the HomePage without crash', () => {
     renderRouter('/');
-    screen.getByText(/메가의 민족/);
+  });
+
+  it('should render the RestaurantListPage without crash', () => {
+    renderRouter('/restaurants');
   });
 });

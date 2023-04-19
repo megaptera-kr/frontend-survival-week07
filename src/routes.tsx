@@ -1,5 +1,6 @@
 import Layout from './Layout';
 import HomePage from './pages/HomePage';
+import RestaurantListPage from './pages/RestaurantListPage';
 
 const routes = [
   {
@@ -7,6 +8,7 @@ const routes = [
     children: [
       // { path: '/', element: <App /> },
       { path: '/', element: <HomePage /> },
+      { path: '/restaurants', element: <RestaurantListPage /> },
     ],
   },
 ];
