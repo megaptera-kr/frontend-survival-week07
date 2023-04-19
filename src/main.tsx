@@ -7,6 +7,7 @@ import routes from './routes';
 
 function main() {
   const element = document.getElementById('root');
+
   if (!element) {
     return;
   }

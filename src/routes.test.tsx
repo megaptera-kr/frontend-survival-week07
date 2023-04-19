@@ -9,7 +9,7 @@ describe('routes', () => {
     render(<RouterProvider router={router} />);
   }
 
-  it('should render the App', () => {
+  it('should render the HomePage', () => {
     renderRouter('/');
     screen.getByText(/메가의 민족/);
   });
