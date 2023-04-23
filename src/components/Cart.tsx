@@ -1,4 +1,5 @@
 import MenuItem from './MenuItem';
+import { useNavigate } from 'react-router-dom';
 
 import useCartStore from '../hooks/useCartStore';
 
@@ -7,10 +8,13 @@ export default function Cart() {
   const { items } = snapshot;
 
   const totalPrice = items.reduce((acc, food) => acc + (food.price * food.quantity), 0);
+  const navigate = useNavigate();
 
   const handleClickOrder = async () => {
     // eslint-disable-next-line no-alert
-    alert('주문완료!');
+    //alert('주문완료!');
+    navigate('/order');
+
   };
 
   return (
