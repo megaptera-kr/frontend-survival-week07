@@ -8,7 +8,7 @@ export default function Cart() {
 
   const totalPrice = items.reduce(
     (acc, food) => acc + food.price * food.quantity,
-    0
+    0,
   );
 
   const handleClickOrder = async () => {
@@ -21,20 +21,28 @@ export default function Cart() {
       <h2>점심 바구니</h2>
       <ul style={{ width: '20%' }}>
         {items.map((item, index) => {
-          const { id, name, price, quantity } = item;
+          const {
+            id, name, price, quantity,
+          } = item;
           const food = { id, name, price };
 
           const key = `${id}-${index}`;
 
           return (
             <MenuItem key={key} food={food}>
-              <span>* {quantity}</span>
+              <span>
+                *
+                {quantity}
+              </span>
             </MenuItem>
           );
         })}
       </ul>
       <button type="button" onClick={handleClickOrder}>
-        합계: {totalPrice.toLocaleString()}원 주문
+        합계:
+        {' '}
+        {totalPrice.toLocaleString()}
+        원 주문
       </button>
     </div>
   );
