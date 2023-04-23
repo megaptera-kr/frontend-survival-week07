@@ -1,5 +1,5 @@
-import MenuItem from './MenuItem';
 import { useNavigate } from 'react-router-dom';
+import MenuItem from './MenuItem';
 
 import useCartStore from '../hooks/useCartStore';
 
@@ -12,9 +12,8 @@ export default function Cart() {
 
   const handleClickOrder = async () => {
     // eslint-disable-next-line no-alert
-    //alert('주문완료!');
+    // alert('주문완료!');
     navigate('/order');
-
   };
 
   return (

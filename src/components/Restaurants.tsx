@@ -1,7 +1,6 @@
-import Menu from './Menu';
+import { Link } from 'react-router-dom';
 
 import Restaurant from '../models/Restaurant';
-import { Link, NavLink } from 'react-router-dom';
 
 type RestaurantProps = {
   restaurants: Restaurant[];
@@ -17,6 +16,9 @@ export default function Restaurants({ restaurants }: RestaurantProps) {
             <Link to={`/restaurantdetail/${restaurant.id}`}>{restaurant.name}</Link>
           </li>
         ))
-      } </ul>
+      }
+      {' '}
+
+    </ul>
   );
 }
