@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom';
-
-export default function OrderPage() {
+export default function OrderCompletePage() {
   return (
     <div>
-      <h1>이대로 주문하시겠어요?</h1>
-      <Link to="/ordercomplete">결제</Link>
+      <h1>주문 완료, 서둘러 배달가겠습니다!</h1>
     </div>
   );
 }
