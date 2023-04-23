@@ -49,7 +49,7 @@ describe('routes', () => {
   context('when the current path is "/order_complete"', () => {
     it('renders order complete message', () => {
       renderRouter('/order_complete');
-      screen.getByText(/주문완료/);
+      screen.getByText(/주문 완료/);
     });
   });
 });
