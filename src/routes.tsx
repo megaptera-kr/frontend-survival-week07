@@ -12,9 +12,9 @@ const routes = [
     element: <Layout />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/list', element: <RestaurantListPage /> },
+      { path: '/restaurants', element: <RestaurantListPage /> },
+      { path: '/restaurants/:id', element: <RestaurantDetailPage /> },
       { path: '/cart', element: <CartPage /> },
-      { path: '/detail', element: <RestaurantDetailPage /> },
       { path: '/order', element: <OrderPage /> },
       { path: '/complete', element: <OrderCompletePage /> },
     ],
