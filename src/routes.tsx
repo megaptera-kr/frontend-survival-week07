@@ -1,9 +1,8 @@
-import HomePage from './pages/HomePage';
-
 import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
 import RestaurantListPage from './pages/RestaurantListPage';
-import CartPage from './pages/CartPage';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
+import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import OrderCompletePage from './pages/OrderCompletePage';
 
@@ -16,7 +15,7 @@ const routes = [
       { path: '/restaurants/:id', element: <RestaurantDetailPage /> },
       { path: '/cart', element: <CartPage /> },
       { path: '/order', element: <OrderPage /> },
-      { path: '/complete', element: <OrderCompletePage /> },
+      { path: '/order/complete', element: <OrderCompletePage /> },
     ],
   },
 ];
