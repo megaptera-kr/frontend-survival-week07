@@ -4,7 +4,7 @@ import RestaurantOrderButton from '../components/home/RestaurantOrderButton';
 export default function HomePage() {
   const navigate = useNavigate();
   return (
-    <section className="w-full flex justify-center items-center gap-12">
+    <section className="w-full h-full flex justify-center items-center gap-12">
       <RestaurantOrderButton
         name="매장 주문"
         handleClickOrder={() => navigate('/order')}
