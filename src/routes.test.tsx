@@ -1,4 +1,6 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import {
+  render, screen, waitFor,
+} from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { container } from 'tsyringe';
 import routes from './routes';
@@ -6,6 +8,10 @@ import routes from './routes';
 const context = describe;
 
 describe('App', () => {
+  beforeEach(() => {
+    container.clearInstances();
+  });
+
   function renderRouter(path:string) {
     const router = createMemoryRouter(routes, { initialEntries: [path] });
     render(<RouterProvider router={router} />);
@@ -20,9 +26,6 @@ describe('App', () => {
   });
 
   context('현재 경로가 "/order"일 때', () => {
-    beforeEach(() => {
-      container.clearInstances();
-    });
     it('메뉴 검색, 필터 버튼, 메뉴 테이블, 주문 내용이 랜더링 된다.', async () => {
       renderRouter('/order');
 
@@ -38,11 +41,13 @@ describe('App', () => {
     });
   });
 
-  context('현재 경로가 "/order/complete"일 때', () => {
-    it('홈페이지가 랜더링 된다.', () => {
-      renderRouter('/order/complete');
+  context('현재 경로가 "/order/complete?orderId=12345678910"일 때', () => {
+    it('주문번호가 랜더링 된다.', async () => {
+      renderRouter('/order/complete?orderId=12345678910');
 
-      expect(screen.getByText(/OrderCompletePage/)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('12345678910')).toBeInTheDocument();
+      });
     });
   });
 });

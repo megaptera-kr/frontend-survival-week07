@@ -2,7 +2,7 @@ import { singleton } from 'tsyringe';
 
 import { Action, Store } from 'usestore-ts';
 
-import { Restaurant, Data, Category } from '../types/restaurant';
+import { Restaurant, RestaurantData, Category } from '../types/restaurant';
 
 @singleton()
 @Store()
@@ -20,7 +20,7 @@ export default class RestaurantStore {
 
     const url = 'http://localhost:3000/restaurants';
     const response = await fetch(url);
-    const data:Data = await response.json();
+    const data:RestaurantData = await response.json();
 
     this.completeLoading(data.restaurants);
   }

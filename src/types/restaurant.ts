@@ -13,6 +13,6 @@ export type Restaurant = {
   menu: Menu[]
 };
 
-export type Data = {
+export type RestaurantData = {
   restaurants: Restaurant[];
 }
