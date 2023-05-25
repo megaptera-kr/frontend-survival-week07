@@ -8,6 +8,7 @@ export default function Button({ name, handleClick }:Props) {
     <button
       className="font-bold text-xl bg-purple-300 rounded-md w-1/2 py-2 hover:bg-purple-500"
       onClick={handleClick}
+      name={name}
       type="button"
     >
       {name}

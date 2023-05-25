@@ -39,6 +39,11 @@ export default class CartStore {
   }
 
   @Action()
+  initOrderId() {
+    this.orderId = '';
+  }
+
+  @Action()
   addOrderMenu(menu:Menu) {
     this.menu = [...this.menu, menu];
     this.calculateOrderCount(this.menu);
@@ -77,5 +82,8 @@ export default class CartStore {
   @Action()
   private completeLoading(orderId:string) {
     this.orderId = orderId;
+    this.menu = [];
+    this.totalOrderCount = 0;
+    this.totalPrice = 0;
   }
 }

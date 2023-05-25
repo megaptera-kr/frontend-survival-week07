@@ -6,11 +6,12 @@ import Cart from './Cart';
 
 export default function CartContainer() {
   const navigate = useNavigate();
-  const [{ totalOrderCount, totalPrice, orderId }] = useCartStore();
+  const [{ totalOrderCount, totalPrice, orderId }, store] = useCartStore();
 
   useEffect(() => {
     if (orderId !== '') {
       navigate(`/order/complete?orderId=${orderId}`);
+      store.initOrderId();
     }
   }, [orderId]);
 

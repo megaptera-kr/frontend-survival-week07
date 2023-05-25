@@ -11,6 +11,7 @@ export default function Cart() {
         return (
           <Food
             key={key}
+            index={index}
             food={food}
             handleClick={() => store.removeOrderMenu(index)}
           />

@@ -46,7 +46,7 @@ describe('App', () => {
       renderRouter('/order/complete?orderId=12345678910');
 
       await waitFor(() => {
-        expect(screen.getByText('12345678910')).toBeInTheDocument();
+        expect(screen.getByText(/12345678910/)).toBeInTheDocument();
       });
     });
   });

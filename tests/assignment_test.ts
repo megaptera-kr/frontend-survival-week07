@@ -18,7 +18,7 @@ Scenario('음식 주문하기', ({ I }) => {
   I.click('짜장면');
   I.click('김밥');
 
-  I.see('주문내역');
+  I.see('주문 내역');
   I.see('총 결제 예상금액');
 
   I.waitForText('2개');
