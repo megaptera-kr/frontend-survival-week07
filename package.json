@@ -1,7 +1,7 @@
 {
   "name": "frontend-survival-week07-answer",
   "version": "1.0.1",
-  "description": "Megaptera food court kiosk",
+  "description": "Megaptera food court kiosk, 7주차 과제",
   "source": "index.html",
   "scripts": {
     "start": "parcel --port 8080",
