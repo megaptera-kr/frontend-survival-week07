@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
 
 import { RouterProvider, createMemoryRouter } from 'react-router';
-import App from './App';
 import routes from './routes';
 
 const context = describe;
