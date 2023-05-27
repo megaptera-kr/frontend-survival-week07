@@ -4,12 +4,16 @@ import CartItem from './CartItem';
 import OrderButton from './OrderButton';
 
 import Food from '../../types/Food';
+import Receipt from '../../types/Receipt';
 
 import useCreateOrder from '../../hooks/useCreateOrder';
 
-export default function Cart() {
+type CartProps = {
+  setReceipt: (value: Receipt) => void;
+}
+
+export default function Cart({ setReceipt }: CartProps) {
   const [selectedFoods, setFoods] = useLocalStorage<Food[]>('cart', []);
-  const [, setReceipt] = useLocalStorage('receipt', {});
 
   const { createOrder } = useCreateOrder();
 
