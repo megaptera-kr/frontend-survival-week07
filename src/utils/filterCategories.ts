@@ -1,6 +1,6 @@
-import { Restaurants } from '../types/restaurant';
+import { Restaurant } from '../types/restaurant';
 
-export default function filterCategories(restaurants: Restaurants[] = []) {
+export default function filterCategories(restaurants: Restaurant[] = []) {
   if (!restaurants.length) {
     return ['전체'];
   }
