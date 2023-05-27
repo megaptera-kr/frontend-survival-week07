@@ -65,7 +65,8 @@ app.post('/orders', (req, res) => {
   ];
 
   res.status(201)
-    .send({ id: order.id });
+    .send(order);
+  // .send({ id: order.id }); // 7주차 과제
 });
 
 app.get('/restaurants', (req, res) => {
