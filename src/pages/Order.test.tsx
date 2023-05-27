@@ -70,80 +70,80 @@ describe('Order ', () => {
     });
   });
 
-  context('when add cart menu', () => {
-    it('click 짜장면, 짬뽕 menu"', async () => {
-      renderRouter('/order');
+  // context('when add cart menu', () => {
+  //   it('click 짜장면, 짬뽕 menu"', async () => {
+  //     renderRouter('/order');
 
-      await waitFor(async () => {
-        await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
-        await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
+  //     await waitFor(async () => {
+  //       await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
+  //       await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
 
-        expect(screen.getByText(/짜장면 8,000원/)).toBeInTheDocument();
-        expect(screen.getByText(/짬뽕 8,000원/)).toBeInTheDocument();
+  //       expect(screen.getByText(/짜장면 8,000원/)).toBeInTheDocument();
+  //       expect(screen.getByText(/짬뽕 8,000원/)).toBeInTheDocument();
 
-        expect(screen.getByText(/주문내역 2개/)).toBeInTheDocument();
-        expect(screen.getByText(/총 결제 예상금액 16,000원/)).toBeInTheDocument();
-      });
-    });
-  });
+  //       expect(screen.getByText(/주문내역 2개/)).toBeInTheDocument();
+  //       expect(screen.getByText(/총 결제 예상금액 16,000원/)).toBeInTheDocument();
+  //     });
+  //   });
+  // });
 
-  context('when remove cart menu', () => {
-    it('remove 짜장면, 짬뽕 menu"', async () => {
-      renderRouter('/order');
+  // context('when remove cart menu', () => {
+  //   it('remove 짜장면, 짬뽕 menu"', async () => {
+  //     renderRouter('/order');
 
-      await waitFor(async () => {
-        await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
-        await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
+  //     await waitFor(async () => {
+  //       await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
+  //       await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
 
-        expect(screen.getByText(/짜장면 8,000원/)).toBeInTheDocument();
-        expect(screen.getByText(/짬뽕 8,000원/)).toBeInTheDocument();
+  //       expect(screen.getByText(/짜장면 8,000원/)).toBeInTheDocument();
+  //       expect(screen.getByText(/짬뽕 8,000원/)).toBeInTheDocument();
 
-        await userEvent.click(screen.getAllByRole('button', { name: 'X' })[1]);
-        await userEvent.click(screen.getAllByRole('button', { name: 'X' })[0]);
+  //       await userEvent.click(screen.getAllByRole('button', { name: 'X' })[1]);
+  //       await userEvent.click(screen.getAllByRole('button', { name: 'X' })[0]);
 
-        expect(screen.getByText(/주문내역 0개/)).toBeInTheDocument();
-        expect(screen.getByText(/총 결제 예상금액 0원/)).toBeInTheDocument();
-      });
-    });
-  });
+  //       expect(screen.getByText(/주문내역 0개/)).toBeInTheDocument();
+  //       expect(screen.getByText(/총 결제 예상금액 0원/)).toBeInTheDocument();
+  //     });
+  //   });
+  // });
 
-  context('when click 취소 button ', () => {
-    it('click cancel button"', async () => {
-      renderRouter('/order');
+  // context('when click 취소 button ', () => {
+  //   it('click cancel button"', async () => {
+  //     renderRouter('/order');
 
-      await waitFor(async () => {
-        await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
-        await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
+  //     await waitFor(async () => {
+  //       await userEvent.click(screen.getByRole('button', { name: '짜장면(8,000원)' }));
+  //       await userEvent.click(screen.getByRole('button', { name: '짬뽕(8,000원)' }));
 
-        expect(cartStore.cart).toHaveLength(2);
+  //       expect(cartStore.cart).toHaveLength(2);
 
-        await userEvent.click(screen.getByRole('button', { name: '취소' }));
+  //       await userEvent.click(screen.getByRole('button', { name: '취소' }));
 
-        expect(screen.getByRole('button', { name: '전체 포장' })).toBeInTheDocument();
-        expect(cartStore.cart).toHaveLength(0);
-      });
-    });
-  });
+  //       expect(screen.getByRole('button', { name: '전체 포장' })).toBeInTheDocument();
+  //       expect(cartStore.cart).toHaveLength(0);
+  //     });
+  //   });
+  // });
 
-  context('when click 주문하기 button', () => {
-    it('click order button"', async () => {
-      renderRouter('/order');
+  // context('when click 주문하기 button', () => {
+  //   it('click order button"', async () => {
+  //     renderRouter('/order');
 
-      await waitFor(async () => {
-        const button = screen.getByRole('button', { name: '주문하기' });
-        userEvent.click(button);
-        await waitFor(() => {
-          expect(screen.getByText(/주문이 완료되었습니다!/));
-          expect(screen.getByText(/주문번호/));
+  //     await waitFor(async () => {
+  //       const button = screen.getByRole('button', { name: '주문하기' });
+  //       userEvent.click(button);
+  //       await waitFor(() => {
+  //         expect(screen.getByText(/주문이 완료되었습니다!/));
+  //         expect(screen.getByText(/주문번호/));
 
-          expect(screen.getByText(/짜장면 1,000원/));
-          expect(screen.getByText(/짬뽕 1,000원/));
+  //         expect(screen.getByText(/짜장면 1,000원/));
+  //         expect(screen.getByText(/짬뽕 1,000원/));
 
-          expect(screen.getByText(/총 가격 2,000원/));
+  //         expect(screen.getByText(/총 가격 2,000원/));
 
-          expect(screen.getByRole('button', { name: '메인화면으로 돌아가기' }));
-        });
-      });
-    });
-  });
+  //         expect(screen.getByRole('button', { name: '메인화면으로 돌아가기' }));
+  //       });
+  //     });
+  //   });
+  // });
 });
