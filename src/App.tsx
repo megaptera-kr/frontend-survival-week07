@@ -1,11 +1,10 @@
 // 1. 영수증 5초 구현 [x]
-// 2. 로컬 스토리지 상태 관리
+// 2. 로컬 스토리지 상태 관리 [x]
 // 3. 라우터 실습
 // 4. 테스트 코드 작성
 
 import { useInterval, useLocalStorage } from 'usehooks-ts';
 
-import { useState } from 'react';
 import Cart from './components/Cart/Cart';
 import ReceiptPrint from './components/Receipt/ReceiptPrinter';
 import FilterableRestaurantTable from './components/Restaurant/FilterableRestaurantTable';
