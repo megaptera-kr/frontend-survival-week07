@@ -1,6 +1,6 @@
 import Food from './Food';
 
-type Restaurant = {
+interface Restaurant {
   id: string;
   category: string;
   name: string;
