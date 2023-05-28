@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 
 import IntroPage from './pages/IntroPage';
 import OrderPage from './pages/OrderPage';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const routes = [
   {
@@ -11,6 +12,7 @@ const routes = [
     children: [
       { path: '/', element: <IntroPage /> },
       { path: '/order', element: <OrderPage /> },
+      { path: '/orderComplete', element: <OrderCompletePage /> },
     ],
   },
 ];

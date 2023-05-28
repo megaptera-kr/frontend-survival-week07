@@ -12,7 +12,7 @@ describe('routes 테스트', () => {
     render(<RouterProvider router={router} />);
   }
 
-  context('intro page 렌더링', () => {
+  context('인트로 페이지 렌더링', () => {
     it('renders the intro page', () => {
       renderRouter('/');
 
@@ -20,11 +20,19 @@ describe('routes 테스트', () => {
     });
   });
 
-  context('order page 렌더링', () => {
+  context('주문 페이지 렌더링', () => {
     it('renders the order page', () => {
       renderRouter('/order');
 
       screen.getByText(/주문내역/);
     });
-  })
+  });
+
+  context('주문 완료 페이지 렌더링', () => {
+    it('renders the order complete page', () => {
+      renderRouter('/orderComplete');
+
+      screen.getByText(/주문번호/);
+    });
+  });
 });
