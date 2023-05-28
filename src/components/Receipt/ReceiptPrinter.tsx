@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import MenuItem from '../Restaurant/MenuItem';
 
 import Receipt from '../../types/Receipt';
@@ -7,6 +9,12 @@ type ReceiptProps = {
 }
 
 export default function ReceiptPrint({ receipt }: ReceiptProps) {
+  if (_.isEmpty(receipt)) {
+    return (
+      <p>[영수증 나오는 곳]</p>
+    );
+  }
+
   const { id, menu, totalPrice } = receipt;
 
   return (
