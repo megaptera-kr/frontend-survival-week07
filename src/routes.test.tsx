@@ -19,4 +19,12 @@ describe('routes 테스트', () => {
       screen.getByText(/원하시는 주문을 터치해주세요./);
     });
   });
+
+  context('order page 렌더링', () => {
+    it('renders the order page', () => {
+      renderRouter('/order');
+
+      screen.getByText(/주문내역/);
+    });
+  })
 });
