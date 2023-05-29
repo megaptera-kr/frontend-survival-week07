@@ -24,6 +24,7 @@ export default function Order({
       <ul>
         { menu
           && menu.map(({ id, name, price }: Food, index: number) => (
+            // eslint-disable-next-line react/no-array-index-key
             <li key={`${id}-${index}`}>
               {name}
               {' '}

@@ -30,6 +30,7 @@ export default function Cart() {
         {
           menu.map((food, index) => (
             <CartItem
+              // eslint-disable-next-line react/no-array-index-key
               key={`${food.id}-${index}`}
               food={food}
               index={index}
