@@ -4,13 +4,17 @@ import useFetchOrder from '../hooks/useFetchOrder';
 type OrderProps = {
     orderId: string,
     handleClickBack: () => void
+}
 
+type OrderData = {
+  menu: Food[],
+  totalPrice: number
 }
 
 export default function Order({
   orderId, handleClickBack,
 }: OrderProps) {
-  const { menu, totalPrice } = useFetchOrder(orderId);
+  const { menu, totalPrice } = useFetchOrder(orderId) as OrderData;
 
   return (
     <>

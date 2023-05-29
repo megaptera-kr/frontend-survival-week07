@@ -10,7 +10,7 @@ export default function FilterTextField({
 }: FilterTextFieldProps) {
   const id = useRef(`input=${Math.random()}`);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setFilterText(value);
   };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useFetchOrder(orderId: number) {
+export default function useFetchOrder(orderId: string) {
   const [orderData, setOrderData] = useState({});
 
   const fetchOrder = async () => {
