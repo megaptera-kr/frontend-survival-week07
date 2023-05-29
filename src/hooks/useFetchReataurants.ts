@@ -1,17 +1,19 @@
-import { useState } from 'react';
-
-const BASE_URL = 'http://localhost:3000';
+import { useEffect, useState } from 'react';
 
 export default function useFetchReataurants() {
-  const [data, setData] = useState([]);
+  const [restaurantsData, setRestaurantsData] = useState([]);
 
-  async function useFetch() {
-    const res = await fetch(`${BASE_URL}/restaurants`);
+  const fetchRestaurants = async () => {
+    const url = 'http://localhost:3000/restaurants';
+    const res = await fetch(url);
     const { restaurants } = await res.json();
-    setData(restaurants);
-  }
 
-  useFetch();
+    setRestaurantsData(restaurants);
+  };
 
-  return data;
+  useEffect(() => {
+    fetchRestaurants();
+  }, []);
+
+  return restaurantsData;
 }

@@ -15,8 +15,10 @@ export default function OrderButton({ menu }: OrderButtonProps) {
   const handleClickOrder = async () => {
     const res = await fetch(url, {
       method: 'POST',
-      body: { menu, totalPrice },
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ menu, totalPrice }),
     });
+
     const { id } = await res.json();
 
     navigate(`/order/complete?orderId=${id}`);

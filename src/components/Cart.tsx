@@ -44,7 +44,6 @@ export default function Cart() {
         </Link>
         <OrderButton
           menu={menu}
-          totalPrice={totalPrice}
         />
       </div>
     </div>

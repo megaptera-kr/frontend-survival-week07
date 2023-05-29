@@ -1,18 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const BASE_URL = 'http://localhost:3000';
-
-export default function useFetchOrder(orderId: number) {
+export default function useFetchOrder(orderId) {
   const [orderData, setOrderData] = useState({});
 
   const fetchOrder = async () => {
-    const res = await fetch(`${BASE_URL}/orders/${orderId}`);
+    const url = `http://localhost:3000/orders/${orderId}`;
+    const res = await fetch(url);
     const { order } = await res.json();
+
     setOrderData(order);
-    // console.log(order);
   };
 
-  fetchOrder();
+  useEffect(() => {
+    fetchOrder();
+  }, []);
 
   return orderData;
 }
