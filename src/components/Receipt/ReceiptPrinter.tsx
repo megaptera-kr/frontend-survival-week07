@@ -9,6 +9,7 @@ type ReceiptProps = {
 }
 
 export default function ReceiptPrint({ receipt }: ReceiptProps) {
+  console.log(receipt);
   if (_.isEmpty(receipt)) {
     return (
       <p>[영수증 나오는 곳]</p>

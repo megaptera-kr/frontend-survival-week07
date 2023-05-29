@@ -1,27 +1,31 @@
-import { useLocalStorage } from 'usehooks-ts';
+import { useNavigate } from 'react-router';
 
 import CartItem from './CartItem';
-import OrderButton from './OrderButton';
-
-import Receipt from '../../types/Receipt';
+import OperationButtons from './OperationButtons';
 
 import useCreateOrder from '../../hooks/useCreateOrder';
 import useCartStore from '../../hooks/useCartStore';
 
-type CartProps = {
-  setReceipt: (value: Receipt) => void;
-}
+// type CartProps = {
+//   setReceipt: (value: Receipt) => void;
+// }
 
-export default function Cart({ setReceipt }: CartProps) {
+export default function Cart() {
+  const navigate = useNavigate();
   // const [selectedFoods, setFoods] = useLocalStorage<Food[]>('cart', []);
   const [{ menu }, store] = useCartStore();
 
   const { createOrder } = useCreateOrder();
 
-  const handleClickCancle = (index: number) => {
+  const handleClickRemove = (index: number) => {
     // const foods = selectedFoods.filter((_, i) => i !== index);
     // setFoods(foods);
     store.removeMenu(index);
+  };
+
+  const handleClickCancel = () => {
+    store.clear();
+    navigate('/');
   };
 
   const handleClickOrder = async () => {
@@ -29,10 +33,14 @@ export default function Cart({ setReceipt }: CartProps) {
     if (!menu.length) { return; }
 
     // const receipt = await createOrder(selectedFoods);
-    const receipt = await createOrder(menu);
-    setReceipt(receipt);
-
+    // const receipt = await createOrder(menu);
+    // setReceipt(receipt);
     // setFoods([]);
+
+    const { id } = await createOrder(menu);
+    store.clear();
+    navigate(`/order/complete?orderId=${id}`);
+
     store.clear();
   };
 
@@ -46,11 +54,15 @@ export default function Cart({ setReceipt }: CartProps) {
             key={key}
             food={food}
             index={index}
-            onClickCancle={handleClickCancle}
+            onClickCancle={handleClickRemove}
           />
         );
       })}
-      <OrderButton foods={menu} onClick={handleClickOrder} />
+      <OperationButtons
+        onClickCancel={handleClickCancel}
+        onClickOrder={handleClickOrder}
+      />
+      {/* <OrderButton foods={menu} onClick={handleClickOrder} /> */}
     </div>
   );
 }

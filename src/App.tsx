@@ -3,35 +3,30 @@
 // 3. 라우터 실습
 // 4. 테스트 코드 작성
 
-import { useInterval, useLocalStorage } from 'usehooks-ts';
+// import { useInterval, useLocalStorage } from 'usehooks-ts';
 
-import Cart from './components/Cart/Cart';
-import ReceiptPrint from './components/Receipt/ReceiptPrinter';
-import FilterableRestaurantTable from './components/Restaurant/FilterableRestaurantTable';
+import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
-import useFetchRestaurants from './hooks/useFetchRestaurants';
-import Receipt from './types/Receipt';
+import routes from './routes';
 
-const emptyReceipt = {} as Receipt;
+// const emptyReceipt = {} as Receipt;
 
 export default function App() {
-  const [receipt, setReceipt] = useLocalStorage<Receipt>('receipt', emptyReceipt);
+  // const [receipt, setReceipt] = useLocalStorage<Receipt>('receipt', emptyReceipt);
 
-  const restaurants = useFetchRestaurants();
+  // useInterval(
+  //   () => {
+  //     setReceipt(emptyReceipt);
+  //   },
+  //   receipt ? 5000 : null,
+  // );
 
-  useInterval(
-    () => {
-      setReceipt(emptyReceipt);
-    },
-    receipt ? 5000 : null,
-  );
+  const router = createBrowserRouter(routes);
 
   return (
     <div>
-      <h2>점심 바구니</h2>
-      <Cart setReceipt={setReceipt} />
-      <FilterableRestaurantTable restaurants={restaurants} />
-      <ReceiptPrint receipt={receipt} />
+      <RouterProvider router={router} />
     </div>
   );
 }

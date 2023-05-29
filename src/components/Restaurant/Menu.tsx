@@ -1,5 +1,3 @@
-import { useLocalStorage } from 'usehooks-ts';
-
 import MenuItem from './MenuItem';
 
 import Food from '../../types/Food';
