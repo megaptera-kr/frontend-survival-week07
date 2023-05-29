@@ -31,7 +31,11 @@ export default function Menu({ menu }: MenuProps) {
             food={food}
           >
             <button type="button" onClick={(() => handleClickSelect(food))}>
-              선택
+              {food.name}
+              (
+              {food.price}
+              원
+              )
             </button>
           </MenuItem>
         );

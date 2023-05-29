@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 
+import Summary from './Summary';
 import CartItem from './CartItem';
 import OperationButtons from './OperationButtons';
 
@@ -46,6 +47,7 @@ export default function Cart() {
 
   return (
     <div>
+      <Summary selectedMenu={menu} />
       {menu.map((food, index) => {
         const key = `${food.id}-${index}`;
 

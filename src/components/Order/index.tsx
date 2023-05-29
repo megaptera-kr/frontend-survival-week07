@@ -14,7 +14,6 @@ export default function Order({
   orderId, onClickBack,
 }: OrderProps) {
   const order = useFetchOrder({ orderId });
-  console.log(order, orderId);
 
   return (
     <div>
