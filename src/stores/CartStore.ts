@@ -15,6 +15,11 @@ export default class CartStore extends Store<CartStoreSnapshot> {
     this.takeSnapshot();
   }
 
+  clearItem() {
+    this.cart = new Cart();
+    this.update();
+  }
+
   addItem({
     productId, name, price, quantity,
   }: {
