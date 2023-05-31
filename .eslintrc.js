@@ -33,6 +33,7 @@ module.exports = {
     indent: ['error', 2],
     'no-trailing-spaces': 'error',
     curly: 'error',
+    'import/no-unresolved': 'off',
     'brace-style': 'error',
     'no-multi-spaces': 'error',
     'space-infix-ops': 'error',
