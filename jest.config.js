@@ -3,6 +3,7 @@ module.exports = {
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect',
   ],
+  testPathIgnorePatterns: ['/e2e/'],
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest', {
       jsc: {

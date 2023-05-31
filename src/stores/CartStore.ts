@@ -30,6 +30,16 @@ export default class CartStore extends Store<CartStoreSnapshot> {
     this.update();
   }
 
+  clearItem() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.cart = new Cart();
+        this.update();
+        resolve('success');
+      }, 100);
+    });
+  }
+
   private update() {
     this.takeSnapshot();
     this.publish();
