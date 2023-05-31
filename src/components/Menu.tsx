@@ -8,7 +8,7 @@ import Food from '../models/Food';
 
 type MenuProps = {
   menu: Food[];
-} & HTMLAttributes<Element> ;
+} & HTMLAttributes<Element>;
 
 export default function Menu({ menu }: MenuProps) {
   const [, cartStore] = useCartStore();
@@ -17,7 +17,10 @@ export default function Menu({ menu }: MenuProps) {
     const { id, name, price } = food;
 
     cartStore.addItem({
-      productId: id, name, price, quantity: 1,
+      productId: id,
+      name,
+      price,
+      quantity: 1,
     });
   };
 
@@ -29,10 +32,7 @@ export default function Menu({ menu }: MenuProps) {
         const key = `${id}-${index}`;
 
         return (
-          <MenuItem
-            key={key}
-            food={food}
-          >
+          <MenuItem key={key} food={food}>
             <button
               style={{ marginLeft: '.5rem' }}
               name={`#${food.name}`}

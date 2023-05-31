@@ -1,6 +1,6 @@
 import Restaurant from './models/Restaurant';
 
-const restaurants:Restaurant[] = [
+const restaurants: Restaurant[] = [
   {
     id: 1,
     category: '중식',

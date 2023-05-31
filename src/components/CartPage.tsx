@@ -1,23 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import MenuItem from './MenuItem';
 
 import useCartStore from '../hooks/useCartStore';
 
-export default function Cart() {
+export default function CartPage() {
   const [snapshot] = useCartStore();
   const { items } = snapshot;
-
-  const totalPrice = items.reduce((acc, food) => acc + (food.price * food.quantity), 0);
+  const navigate = useNavigate();
+  const totalPrice = items.reduce(
+    (acc, food) => acc + food.price * food.quantity,
+    0,
+  );
 
   const handleClickOrder = async () => {
-    // eslint-disable-next-line no-alert
-    alert('주문완료!');
+    navigate('/order');
   };
 
   return (
     <div style={{ marginBottom: '3rem' }}>
-      <h2>
-        점심 바구니
-      </h2>
+      <h2>장바구니</h2>
+      <h2>점심 바구니</h2>
       <ul style={{ width: '20%' }}>
         {items.map((item, index) => {
           const {
@@ -28,23 +30,17 @@ export default function Cart() {
           const key = `${id}-${index}`;
 
           return (
-            <MenuItem
-              key={key}
-              food={food}
-            >
+            <MenuItem key={key} food={food}>
               <span>
                 *
-                {' '}
                 {quantity}
               </span>
             </MenuItem>
           );
         })}
       </ul>
-      <button
-        type="button"
-        onClick={handleClickOrder}
-      >
+
+      <button type="button" onClick={handleClickOrder}>
         합계:
         {' '}
         {totalPrice.toLocaleString()}
