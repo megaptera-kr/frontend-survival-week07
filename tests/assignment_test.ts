@@ -1,44 +1,50 @@
 Feature('과제 테스트');
 
-Scenario('test', ({ I }) => {
-  // HomePage
+Scenario('인트로 화면', ({ I }) => {
   I.amOnPage('/');
 
-  I.see('어서오세요, 메가의 민족입니다');
+  I.see('메가테라 푸드코트 키오스크');
+  I.see('원하시는 주문을 터치해주세요');
 
-  // RestaurantListPage
-  I.click('식당 목록');
+  I.click('매장 주문');
+});
 
-  I.see('메가반점');
+Scenario('음식 주문하기', ({ I }) => {
+  I.amOnPage('/order');
+
+  I.waitForText('메가반점');
   I.see('메리김밥');
-  I.see('혹등고래카레');
 
-  I.click('메가반점');
+  I.click('짜장면');
+  I.click('김밥');
 
-  // RestaurantDetailPage
-  I.see('메가반점');
-  I.click({ name: '#짜장면' });
-  I.click({ name: '#짜장면' });
+  I.see('주문내역');
+  I.see('총 결제 예상금액');
 
-  I.click('식당 목록');
+  I.waitForText('2개');
+  I.waitForText('11,500원');
 
-  // RestaurantListPage
-  I.click('혹등고래카레');
+  I.click('주문하기');
 
-  // RestaurantDetailPage
-  I.see('혹등고래카레');
-  I.click({ name: '#소시지카레' });
+  I.waitForText('주문이 완료되었습니다!');
+  I.see('주문목록');
+  I.see('김밥');
+  I.see('짜장면');
+});
 
-  I.click('장바구니');
+Scenario('식당 찾기', ({ I }) => {
+  I.amOnPage('/order');
 
-  // CartPage
-  I.see('점심 바구니');
-  I.click('합계: 29,000원 주문');
+  I.waitForText('메가반점');
 
-  // OrderPage
-  I.see('이대로 주문하시겠어요?');
-  I.click('결제');
+  I.click('한식');
 
-  // OrderCompletePage
-  I.see('주문 완료, 서둘러 배달가겠습니다!');
+  I.see('메리김밥');
+  I.see('데브부엌');
+  I.dontSee('메가반점');
+
+  I.fillField('검색', '데브부엌');
+  I.see('제육덮밥');
+  I.dontSee('메리김밥');
+  I.dontSee('컵라면');
 });

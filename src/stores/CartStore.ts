@@ -1,43 +1,45 @@
-import Store from './Store';
+import { singleton } from 'tsyringe';
+import { Action, Store } from 'usestore-ts';
 
-import Cart from '../models/Cart';
-import Item from '../models/Item';
+import { Food } from '../types';
 
-export type CartStoreSnapshot = {
-  items: Item[];
-}
+@singleton()
+@Store()
+export default class CartStore {
+  cart : Food[] = [];
 
-export default class CartStore extends Store<CartStoreSnapshot> {
-  cart = new Cart();
+  totalPrice = 0;
 
-  constructor() {
-    super();
-    this.takeSnapshot();
+  count = 0;
+
+  @Action()
+  addCart(food: Food) {
+    this.cart = [...this.cart, food];
+    this.calcTotalPrice();
+    this.calcTotalCount();
   }
 
-  addItem({
-    productId, name, price, quantity,
-  }: {
-    productId: number;
-    name: string;
-    price: number;
-    quantity: number;
-  }) {
-    this.cart = this.cart.addItem({
-      productId, name, price, quantity,
-    });
-
-    this.update();
+  @Action()
+  removeCart(index: number) {
+    this.cart = this.cart.filter((_, i) => i !== index);
+    this.calcTotalPrice();
+    this.calcTotalCount();
   }
 
-  private update() {
-    this.takeSnapshot();
-    this.publish();
+  @Action()
+  resetCart() {
+    this.cart = [];
+    this.totalPrice = 0;
+    this.count = 0;
   }
 
-  private takeSnapshot() {
-    this.snapshot = {
-      items: this.cart.items,
-    };
+  @Action()
+  calcTotalPrice() {
+    this.totalPrice = this.cart.reduce((acc, food) => acc + food.price, 0);
+  }
+
+  @Action()
+  calcTotalCount() {
+    this.count = this.cart.length;
   }
 }
