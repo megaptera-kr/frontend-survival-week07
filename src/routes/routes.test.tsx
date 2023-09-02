@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 import routes from '.';
 
@@ -8,7 +8,7 @@ const context = describe;
 
 describe('App', () => {
   function renderRouter(path:string) {
-    const router = createBrowserRouter(routes, { initialEntries: [path] });
+    const router = createMemoryRouter(routes, { initialEntries: [path] });
     render(<RouterProvider router={router} />);
   }
 
