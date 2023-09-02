@@ -15,7 +15,7 @@ describe('App', () => {
     it('Home Page를 렌더링 한다.', () => {
       renderPage('/');
 
-      screen.getByText(/Home/);
+      screen.getByText(/원하시는 주문을 터치해주세요/);
     });
   });
 
