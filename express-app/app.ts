@@ -69,7 +69,10 @@ app.post('/orders', (req, res) => {
 });
 
 app.get('/restaurants', (req, res) => {
-  const restaurants = [
+  const keyword = typeof req.query.keyword === 'string' ? req.query.keyword : '';
+  const category = typeof req.query.category === 'string' ? req.query.category : '';
+
+  let restaurants = [
     {
       id: '1',
       category: '중식',
@@ -203,6 +206,14 @@ app.get('/restaurants', (req, res) => {
       ],
     },
   ];
+  restaurants = restaurants.filter(
+    (restaurant) => {
+      if (category === '전체') {
+        return restaurant.name.includes(keyword);
+      }
+      return restaurant.category === category && restaurant.name.includes(keyword);
+    },
+  );
 
   res.send({ restaurants });
 });
