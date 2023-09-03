@@ -29,7 +29,7 @@ describe('App', () => {
     it('OrderComplete Page를 렌더링 한다.', () => {
       renderPage('/order/complete');
 
-      screen.getByText(/OrderComplete/);
+      screen.getByText(/주문이 완료되었습니다!/);
     });
   });
 });

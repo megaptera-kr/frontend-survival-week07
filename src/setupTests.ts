@@ -7,6 +7,7 @@ import server from './mocks/server';
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => jest.fn(),
+  useSearchParams: () => [new URLSearchParams(''), jest.fn()],
 }));
 
 beforeAll(() => {
