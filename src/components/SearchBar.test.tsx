@@ -9,6 +9,8 @@ describe('SearchBar', () => {
       <SearchBar
         value=""
         setValue={setValue}
+        categories={['한식', '중식', '일식']}
+        setCategory={jest.fn()}
       />
     ));
   });
