@@ -4,6 +4,7 @@ import useBasketStore from '../hooks/useBasketStore';
 
 import BasketList from './BasketList';
 import usePostOrder from '../hooks/usePostOrder';
+import priceToLocal from '../utils/priceToLocal';
 
 export default function Basket() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function Basket() {
         <span>
           총 결제 예상금액
           {' '}
-          {state.totalPrice}
+          {priceToLocal(state.totalPrice)}
           원
         </span>
       </div>

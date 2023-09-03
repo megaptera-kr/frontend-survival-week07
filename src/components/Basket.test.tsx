@@ -44,7 +44,7 @@ describe('Basket', () => {
       render(<Basket />);
 
       screen.getByText(/주문내역 2개/);
-      screen.getByText(/예상금액 14000원/);
+      screen.getByText(/예상금액 14,000원/);
     });
 
     it('장바구니에 담긴 메뉴를 렌더링 한다.', () => {
