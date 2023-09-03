@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
 import routes from './routes';
 
@@ -12,7 +13,8 @@ function main() {
   }
 
   const root = ReactDOM.createRoot(container);
-  root.render(<RouterProvider router={routes} />);
+  const router = createBrowserRouter(routes);
+  root.render(<RouterProvider router={router} />);
 }
 
 main();
