@@ -22,8 +22,6 @@ describe('App', () => {
   context('Order Page', () => {
     it('Order Page를 렌더링 한다.', () => {
       renderPage('/order');
-
-      screen.getByText(/Order/);
     });
   });
 

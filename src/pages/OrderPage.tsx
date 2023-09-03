@@ -1,7 +1,13 @@
+import FilterableRestaurantsTable from '../components/FilterableRestaurantsTable';
+
+import useFetchRestaurants from '../hooks/useFetchRestaurants';
+
 export default function OrderPage() {
+  const restaurants = useFetchRestaurants();
+
   return (
     <div>
-      <p>Order Page</p>
+      <FilterableRestaurantsTable restaurants={restaurants} />
     </div>
   );
 }
