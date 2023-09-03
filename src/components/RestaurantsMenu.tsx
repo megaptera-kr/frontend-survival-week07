@@ -1,3 +1,4 @@
+import useBasketStore from '../hooks/useBasketStore';
 import { Menu } from '../types/restaurants';
 import RestaurantsMenuButton from './RestaurantsMenuButton';
 
@@ -6,8 +7,10 @@ type RestaurantsMenuProps = {
 }
 
 export default function RestaurantsMenu({ menu }: RestaurantsMenuProps) {
+  const [, store] = useBasketStore();
+
   const handleClickMenu = (menuItem: Menu) => {
-    console.log('handleClickMenu', menuItem);
+    store.addMenu(menuItem);
   };
 
   return (
