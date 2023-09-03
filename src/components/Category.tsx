@@ -1,5 +1,3 @@
-import React, { MouseEvent } from 'react';
-
 type CategoryProps = {
   category: string;
   onClickCategoryBtn: (value: string) => void;
