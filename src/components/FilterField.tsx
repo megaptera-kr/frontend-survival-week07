@@ -10,20 +10,20 @@ type FilterFieldProps = {
 }
 
 export default function FilterField({
-    restaurants,
-    filterText,
-    setFilterText,
-    setFilterCategory,
+  restaurants,
+  filterText,
+  setFilterText,
+  setFilterCategory,
 }: FilterFieldProps) {
-    return (
-        <div>
-            <TextField
-                labelText="검색"
-                placeholder="식당 이름"
-                filterText={filterText}
-                setFilterText={setFilterText}
-            />
-            <ButtonField restaurants={restaurants} setFilterCategory={setFilterCategory} />
-        </div>
-    );
+  return (
+    <div>
+      <TextField
+        labelText="검색"
+        placeholder="식당 이름"
+        filterText={filterText}
+        setFilterText={setFilterText}
+      />
+      <ButtonField restaurants={restaurants} setFilterCategory={setFilterCategory} />
+    </div>
+  );
 }

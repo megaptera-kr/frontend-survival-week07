@@ -6,29 +6,29 @@ type FilterConditions = {
 }
 
 function normalize(text: string) {
-    return text.trim();
+  return text.trim();
 }
 
 export default function filterRestaurants(
-    restaurants: Restaurant[],
-    { filterText, filterCategory }: FilterConditions,
+  restaurants: Restaurant[],
+  { filterText, filterCategory }: FilterConditions,
 ) {
-    const filteredRestaurant = restaurants.filter((restaurant: Restaurant) => {
-        if (filterCategory === '전체') {
-            return restaurant;
-        }
-        return restaurant.category === filterCategory;
-    });
-
-    const query = normalize(filterText);
-
-    if (!query) {
-        return filteredRestaurant;
+  const filteredRestaurant = restaurants.filter((restaurant: Restaurant) => {
+    if (filterCategory === '전체') {
+      return restaurant;
     }
+    return restaurant.category === filterCategory;
+  });
 
-    function contains(restaurant: Restaurant) {
-        return restaurant.name.includes(filterText);
-    }
+  const query = normalize(filterText);
 
-    return filteredRestaurant.filter(contains);
+  if (!query) {
+    return filteredRestaurant;
+  }
+
+  function contains(restaurant: Restaurant) {
+    return restaurant.name.includes(filterText);
+  }
+
+  return filteredRestaurant.filter(contains);
 }

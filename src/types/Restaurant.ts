@@ -7,4 +7,4 @@ import Menu from './Menu';
    menu: Menu[];
  }
 
- export default Restaurant;
+export default Restaurant;

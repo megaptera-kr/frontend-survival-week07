@@ -6,34 +6,34 @@ type TextFieldProps = {
 }
 
 export default function TextField({
-    labelText,
-    placeholder,
-    filterText,
-    setFilterText,
+  labelText,
+  placeholder,
+  filterText,
+  setFilterText,
 }: TextFieldProps) {
-    const id = `input-${labelText}`;
+  const id = `input-${labelText}`;
 
-    const handleChangeFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
+  const handleChangeFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
 
-        setFilterText(value);
-    };
+    setFilterText(value);
+  };
 
-    return (
-        <div>
-            <label
-                style={{ marginRight: '1rem' }}
-                htmlFor={id}
-            >
-                {labelText}
-            </label>
-            <input
-                id={id}
-                type="text"
-                placeholder={placeholder}
-                value={filterText}
-                onChange={handleChangeFilterText}
-            />
-        </div>
-    );
+  return (
+    <div>
+      <label
+        style={{ marginRight: '1rem' }}
+        htmlFor={id}
+      >
+        {labelText}
+      </label>
+      <input
+        id={id}
+        type="text"
+        placeholder={placeholder}
+        value={filterText}
+        onChange={handleChangeFilterText}
+      />
+    </div>
+  );
 }

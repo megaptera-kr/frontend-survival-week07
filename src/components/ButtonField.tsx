@@ -7,36 +7,36 @@ type ButtonFieldProps = {
 }
 
 export default function ButtonField({ restaurants, setFilterCategory }: ButtonFieldProps) {
-    const categories = selectCategories(restaurants);
+  const categories = selectCategories(restaurants);
 
-    const handleClickCategoryButton = (category: string) => {
-        setFilterCategory(category);
-    };
+  const handleClickCategoryButton = (category: string) => {
+    setFilterCategory(category);
+  };
 
-    return (
-        <ul
-            style={{
-                display: 'flex',
-                margin: '16px 0px',
-                listStyle: 'none',
-                padding: '0px',
-            }}
+  return (
+    <ul
+      style={{
+        display: 'flex',
+        margin: '16px 0px',
+        listStyle: 'none',
+        padding: '0px',
+      }}
+    >
+      {categories.map((category) => (
+        <li
+          key={category}
+          style={{ marginRight: '1rem' }}
         >
-            {categories.map((category) => (
-                <li
-                    key={category}
-                    style={{ marginRight: '1rem' }}
-                >
-                    <button
-                        type="button"
-                        onClick={() => {
-                            handleClickCategoryButton(category);
-                        }}
-                    >
-                        {category}
-                    </button>
-                </li>
-            ))}
-        </ul>
-    );
+          <button
+            type="button"
+            onClick={() => {
+              handleClickCategoryButton(category);
+            }}
+          >
+            {category}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
 }

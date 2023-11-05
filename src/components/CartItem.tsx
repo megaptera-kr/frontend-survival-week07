@@ -7,26 +7,26 @@ type CartItemProps = {
 }
 
 export default function CartItem({
-    cart,
-    index,
-    onClickCancel,
+  cart,
+  index,
+  onClickCancel,
 }: CartItemProps) {
-    return (
-        <li>
-            <span>
-                {cart.name}
-         (
-         {cart.price.toLocaleString('ko-kr')}
-         원)
-       </span>
-            <button
-                type="button"
-                onClick={() => {
-                    onClickCancel(index);
-                }}
-            >
-                x
-       </button>
-        </li>
-    );
+  return (
+    <li>
+      <span>
+        {cart.name}
+        (
+        {cart.price.toLocaleString('ko-kr')}
+        원)
+      </span>
+      <button
+        type="button"
+        onClick={() => {
+          onClickCancel(index);
+        }}
+      >
+        x
+      </button>
+    </li>
+  );
 }
