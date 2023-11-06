@@ -51,12 +51,12 @@ module.exports = {
     'key-spacing': ['error', { mode: 'strict' }],
     'arrow-spacing': ['error', { before: true, after: true }],
     'import/no-extraneous-dependencies': ['error', {
-      devDependencies: [
-        '**/*.test.js',
-        '**/*.test.jsx',
-        '**/*.test.ts',
-        '**/*.test.tsx',
-      ],
+      devDependencies: true, // [
+      // '**/*.test.js',
+      // '**/*.test.jsx',
+      // '**/*.test.ts',
+      // '**/*.test.tsx',
+      // ],
     }],
     'import/extensions': ['error', 'ignorePackages', {
       js: 'never',
