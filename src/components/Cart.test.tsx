@@ -24,7 +24,7 @@ describe('Cart', () => {
   it('renders Cart', () => {
     renderCart();
 
-    screen.getByText(/메뉴/);
+    screen.getByText(/주문내역/);
     screen.getByText(/총 결제 예상금액/);
     screen.getByText('취소');
     screen.getByText('주문하기');
