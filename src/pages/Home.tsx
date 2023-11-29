@@ -11,8 +11,8 @@ export default function Home() {
     <div>
       <h2>원하시는 주문을 터치해주세요</h2>
       <div style={{ display: 'flex', gap: 10 }}>
-        <button type="button" onClick={handleClick}>매장주문</button>
-        <button type="button" onClick={handleClick}>전체포장</button>
+        <button type="button" onClick={handleClick}>매장 주문</button>
+        <button type="button" onClick={handleClick}>전체 포장</button>
       </div>
     </div>
   );

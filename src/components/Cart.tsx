@@ -38,7 +38,7 @@ export default function Cart() {
     <div>
       <hr />
       <p>
-        메뉴 갯수
+        주문내역
         {' '}
         {menu.length || 0}
         개
@@ -46,7 +46,7 @@ export default function Cart() {
       <p>
         총 결제 예상금액
         {' '}
-        {calcTotalPrice}
+        {calcTotalPrice.toLocaleString()}
         원
       </p>
       <div style={{ marginBottom: 20 }}>
