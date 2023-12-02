@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 
 import React from 'react';
 import Routes from './routes';
-import Navigation from './components/common/Navigation/Navigation';
 
 function main() {
   const container = document.getElementById('root');
@@ -16,10 +15,7 @@ function main() {
   const root = ReactDOM.createRoot(container);
   root.render(
     <React.StrictMode>
-      <>
-        <Navigation />
-        <RouterProvider router={RouteList} />
-      </>
+      <RouterProvider router={RouteList} />
     </React.StrictMode>,
   );
 }

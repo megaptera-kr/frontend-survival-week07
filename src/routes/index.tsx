@@ -10,6 +10,10 @@ const Routes = [
     path: '/order',
     element: <Order />,
   },
+  {
+    path: 'complete',
+    element: <h1>Complete</h1>,
+  },
 ];
 
 export default Routes;

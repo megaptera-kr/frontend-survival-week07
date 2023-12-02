@@ -1,0 +1,113 @@
+html, body, h1, h2, h3, ul, li, button{
+  margin:0;
+  padding:0;
+}
+
+#root{
+  width:400px;
+  margin:0 auto;
+  padding:10px;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* MainPage */
+
+.main-page{
+  display:flex;
+  flex-wrap:wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-page p {
+  flex:1 1 100%;
+  text-align: center;
+}
+
+.link-list{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+
+.link-list li a {
+  padding:10px;
+  border:1px solid #bebebe;
+  border-radius:4px;
+}
+
+.categories{
+  display:flex;
+  margin-top:10px;
+  gap:10px;
+}
+
+.categories li button{
+  padding:6px;
+  border-radius:4px;
+}
+
+.categories .selected{
+    background:#000;
+    color:#fff;
+}
+
+.restaurants{
+  margin-top:50px;
+}
+
+.restaurants > li{
+  display:flex;
+  padding:10px;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  align-items: center;
+  border:1px solid #bebebe;
+  border-radius:4px;
+}
+
+.restaurants > li:nth-child(n+2){
+  margin-top:10px;
+}
+
+.restaurants > li > div{
+  flex-basis: 40%;
+}
+
+.menues{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.menues li{
+  flex:1 0 100%;
+}
+
+.cart {
+  padding:20px;
+  border:1px solid #bebebe;
+}
+
+.cart-footer{
+  display:flex;
+  gap:10px;
+}
+
+.cart-footer .price{
+  font-weight:bold;
+}
