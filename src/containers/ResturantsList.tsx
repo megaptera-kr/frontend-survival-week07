@@ -19,15 +19,16 @@ function ResturantsList({
   if (!resturantsList) return <Loading />;
 
   return (
-    <div data-testid="ResturantsList">
+    <div data-testid="ResturantsList" className="main">
       {resturantsList.map((row) => (
         <ul
           data-testid={`ResturantsItem${row.id}`}
           key={row.id}
+          className="container section"
         >
           <Grid gridTemplateColumns=".3fr .3fr 1fr">
-            <li>{row.name}</li>
-            <li>{row.category}</li>
+            <li><strong>{row.name}</strong></li>
+            <li><strong>{row.category}</strong></li>
             <li>
               <ul className="row lv2">
                 {row.menu.map((menuItem, index) => (

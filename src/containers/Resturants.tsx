@@ -29,7 +29,7 @@ function Restaurants() {
 
   return (
     <div data-testid="Restaurants" className="row">
-      <section>
+      <Grid>
         <Input
           label="검색"
           value={name}
@@ -45,12 +45,12 @@ function Restaurants() {
           ]}
           onClick={handleCategoryClick}
         />
-      </section>
-      <section className="row">
+      </Grid>
+      <section className="container row">
         <Grid gridTemplateColumns=".3fr .3fr 1fr">
-          <li>식당 이름</li>
-          <li>종류</li>
-          <li>메뉴</li>
+          <li><strong>식당 이름</strong></li>
+          <li><strong>종류</strong></li>
+          <li><strong>메뉴</strong></li>
         </Grid>
         {filtered && <ResturantsList resturantsList={filtered} />}
       </section>

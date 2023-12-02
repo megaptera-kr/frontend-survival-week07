@@ -11,7 +11,7 @@ function Select({ options, onClick }: Props) {
   }, []);
 
   return (
-    <ul className="flex">
+    <ul className="flex select">
       {options.map((row) => (
         <li key={row.value}>
           <button data-testid={`SelectItem${row.value}`} type="button" onClick={() => handleClick(row.value)}>

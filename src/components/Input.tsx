@@ -18,17 +18,16 @@ function Input({
   );
 
   return (
-    <>
-      {label && <label htmlFor="input-검색">{label}</label>}
+    <div className="input">
       <input
         data-testid="Input"
         type="text"
         id="input-검색"
-        value={value}
         placeholder={placeholder}
+        value={value}
         onChange={handleChange}
       />
-    </>
+    </div>
   );
 }
 
