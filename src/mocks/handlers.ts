@@ -6,7 +6,7 @@ import orders from '../features/orders';
 const BASE_URL = 'http://localhost:3000';
 
 export const handlers = [
-  rest.get(`${BASE_URL}/products`, (req, res, ctx) => res(
+  rest.get(`${BASE_URL}/restaurants`, (req, res, ctx) => res(
     ctx.json({ restaurants }),
   )),
   rest.get(`${BASE_URL}/orders`, (req, res, ctx) => res(
