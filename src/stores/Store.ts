@@ -1,31 +1,33 @@
 import { singleton } from 'tsyringe';
 
 import BaseStore, { Action } from './BaseStore';
+import { Menu } from '../types';
 
-const initialState = {
-  count: 0,
-  name: 'Tester',
+export type State = {
+  order : Menu[]
+}
+
+const initialState :State = {
+  order: [],
 };
 
-export type State = typeof initialState;
-
-function increase(state: State, action: Action<number>) {
+function addOrderList(state: State, action: Action<Menu>) {
   return {
     ...state,
-    count: state.count + (action.payload ?? 1),
+    order: [...state.order, action.payload],
   };
 }
 
-function decrease(state: State) {
+function deleteOrderList(state: State, action: Action<number>) {
   return {
     ...state,
-    count: state.count - 1,
+    order: state.order.filter((_, i) => i !== action.payload),
   };
 }
 
 const reducers = {
-  increase,
-  decrease,
+  addOrderList,
+  deleteOrderList,
 };
 
 @singleton()

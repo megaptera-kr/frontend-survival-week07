@@ -1,22 +1,24 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu } from '../types';
 import useCreateOrder from '../hooks/useCreateOrder';
 import calculateTotalPrice from '../utils/calculateTotalPrice';
+import useSelector from '../hooks/useSelector';
+import CartItem from './CartItem';
+import useDispatch from '../hooks/useDispatch';
+import OperationButtons from './OperationButtons';
 
-type Props = {
-    orderList : Menu[],
-    handleDeleteOrder:(index : number)=>void
-
-}
-
-function Cart({ orderList, handleDeleteOrder }:Props) {
+function Cart() {
+  const orderList = useSelector((state) => state.order);
   const navigator = useNavigate();
   const createOrder = useCreateOrder();
   const totalPrice = calculateTotalPrice(orderList);
+  const dispatch = useDispatch();
 
   const handleCancelOrder = () => {
     navigator('/');
+  };
+
+  const handleDeleteOrder = (index : number) => {
+    dispatch({ type: 'deleteOrderList', payload: index });
   };
 
   const handleSubmit = async () => {
@@ -45,21 +47,18 @@ function Cart({ orderList, handleDeleteOrder }:Props) {
           {orderList.map((order, index) => {
             const key = order.id + index;
             return (
-              <li key={key}>
-                {order.name}
-                {' '}
-                {order.price.toLocaleString()}
-                <button type="button" onClick={() => handleDeleteOrder(index)}>x</button>
-              </li>
+              <CartItem
+                key={key}
+                order={order}
+                index={index}
+                handleDeleteOrder={handleDeleteOrder}
+              />
             );
           })}
           <li />
         </ul>
       )}
-      <div>
-        <button type="button" onClick={handleCancelOrder}>취소</button>
-        <button type="button" onClick={handleSubmit}>주문하기</button>
-      </div>
+      <OperationButtons handleCancelOrder={handleCancelOrder} handleSubmit={handleSubmit} />
     </div>
   );
 }

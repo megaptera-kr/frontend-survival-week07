@@ -1,8 +1,14 @@
+import React from 'react';
 import { RouterProvider } from 'react-router';
-import router from './routes';
+import { createBrowserRouter } from 'react-router-dom';
+import routes from './routes';
 
 export default function App() {
+  const router = createBrowserRouter(routes);
+
   return (
-    <RouterProvider router={router} />
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   );
 }
