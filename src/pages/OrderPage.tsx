@@ -2,7 +2,7 @@ import Categories from '../components/restaurants/Categories';
 
 import SearchBar from '../components/restaurants/SearchBar';
 
-import Menus from '../components/restaurants/Menus';
+import RestaurantTable from '../components/restaurants/RestaurantTable';
 
 import useFetchRestaurants from '../hooks/useFetchRestaurants';
 
@@ -23,7 +23,7 @@ export default function OrderPage() {
         htmlFor='input-검색'
         placeholder='식당 이름을 입력해 주세요.'
       />
-      <Menus restaurants={restaurants} />
+      <RestaurantTable restaurants={restaurants} />
     </>
   );
 }

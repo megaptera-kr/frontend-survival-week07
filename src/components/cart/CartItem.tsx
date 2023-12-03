@@ -48,7 +48,7 @@ export default function CartItem({ item, index }: CartItemProps) {
         value={`${name}cancel`}
         onClick={() => handleClickRemove(index)}
       >
-        취소
+        X
       </Button>
     </Item>
   );

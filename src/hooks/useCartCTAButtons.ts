@@ -10,8 +10,12 @@ import Food from '../types/Food';
 
 import PATHNAME from '../constants/pathname';
 
+import useSearchStore from './useSearchStore';
+
 export default function useCartCTAButtons() {
   const [{ menu }, store] = useCartStore();
+
+  const [, searchStore] = useSearchStore();
 
   const navigate = useNavigate();
 
@@ -40,11 +44,15 @@ export default function useCartCTAButtons() {
 
     store.clear();
 
+    searchStore.clear();
+
     navigate(`${PATHNAME.OrderComplete}?orderId=${id}`);
   };
 
   const handleClickCancel = () => {
     store.clear();
+
+    searchStore.clear();
 
     navigate(PATHNAME.Home);
   };

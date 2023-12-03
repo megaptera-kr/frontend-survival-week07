@@ -20,4 +20,10 @@ export default class SearchStore {
   setQuery(query: string) {
     this.query = query;
   }
+
+  @Action()
+  clear() {
+    this.query = '';
+    this.category = '전체';
+  }
 }
