@@ -11,14 +11,17 @@ const initialState :State = {
   order: [],
 };
 
-function addOrderList(state: State, action: Action<Menu>) {
-  return {
-    ...state,
-    order: [...state.order, action.payload],
-  };
+function addOrderList(state: State, action: Action<Menu>):State {
+  if (action.payload) {
+    return {
+      ...state,
+      order: [...state.order, action?.payload],
+    };
+  }
+  return state;
 }
 
-function deleteOrderList(state: State, action: Action<number>) {
+function deleteOrderList(state: State, action: Action<number>):State {
   return {
     ...state,
     order: state.order.filter((_, i) => i !== action.payload),

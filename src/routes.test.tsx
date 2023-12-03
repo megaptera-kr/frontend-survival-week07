@@ -19,24 +19,23 @@ describe('routes', () => {
     });
   });
 
-  // 에러 발생
-
   // context('when the current path is “/order', () => {
-  //   it('renders the about page', async () => {
+  //   it('renders the about page', () => {
   //     renderRouter('/order');
-  //     await waitFor(() => {
-  //       screen.getByText(/메가반점/);
-  //       screen.getByText(/메리김밥/);
-  //     });
+
+  //     // await waitFor(() => {
+  //     //   screen.getByText(/메가반점/);
+  //     //   screen.getByText(/메리김밥/);
+  //     // });
   //   });
   // });
 
   // context('when the current path is “/order/complete', () => {
-  //   it('renders the about page', async () => {
+  //   it('renders the about page', () => {
   //     renderRouter('/order/complete');
-  //     await waitFor(() => {
-  //       screen.getByText('주문이 완료되었습니다!');
-  //     });
+  //     // await waitFor(() => {
+  //     //   screen.getByText('주문이 완료되었습니다!');
+  //     // });
   //   });
   // });
 });
