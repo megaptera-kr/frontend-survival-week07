@@ -77,6 +77,10 @@ button.txt {
   font-weight: 400;
 }
 
+button.txt.--delete {
+  color: #FF6B6B;
+}
+
 button:hover {
   opacity: 0.75;
 }

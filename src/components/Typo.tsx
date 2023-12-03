@@ -3,11 +3,13 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { RoutePathType } from '../routes';
 
-interface TypoProps { children: ReactNode; level?: number; theme?: 'link' }
+interface TypoProps { children: ReactNode; testId?: string; level?: number; theme?: 'link' }
 
-function Typo({ children, level, theme }: TypoProps) {
+function Typo({
+  children, level, theme, testId,
+}: TypoProps) {
   return (
-    <span className={classNames('typo', level && `--level${level}`, theme && `--${theme}`)}>
+    <span data-testid={testId} className={classNames('typo', level && `--level${level}`, theme && `--${theme}`)}>
       {children}
     </span>
   );
@@ -19,7 +21,7 @@ interface TypoLinkProps extends TypoProps {
 
 function LinkTypo({ to, children, ...typoProps }: TypoLinkProps) {
   return (
-    <Typo {...typoProps} theme="link">
+    <Typo testId="Link" {...typoProps} theme="link">
       <Link to={to}>
         {children}
       </Link>

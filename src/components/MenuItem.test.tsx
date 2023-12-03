@@ -20,7 +20,7 @@ describe('MenuItem', () => {
   test('"메뉴 선택" 이벤트를 주입하면, "메뉴 선택" 버튼을 렌더링한다.', () => {
     render(<MenuItem {...props} onClick={() => {}} />);
 
-    const element = screen.getByTestId('PickFoodBtn짜장면');
+    const element = screen.getByTestId('PickFoodBtn짜장면--add');
 
     expect(element).toBeInTheDocument();
   });

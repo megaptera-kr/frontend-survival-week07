@@ -52,6 +52,7 @@ function Cart() {
               {cart.map((menu, index) => (
                 <li data-testid="CartItem" key={`${menu.id}_${index}`}>
                   <MenuItem
+                    isAdd={false}
                     menuItem={menu}
                     onClick={(menuItem) => {
                       dispatch(deleteCart(menuItem));
