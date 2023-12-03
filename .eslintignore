@@ -1,3 +1,7 @@
+/node_modules/
+/coverage/
 /dist/
-/.parcel-cache/
+.parcel-cache
 *.d.ts
+jest.polyfills.js
+
