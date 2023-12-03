@@ -1,4 +1,4 @@
-import { restaurants } from '../../features/restaurants';
+import restaurants from '../../features/restaurants';
 import CartStore from '../../store/cartStore';
 
 const context = describe;

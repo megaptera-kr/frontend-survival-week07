@@ -1,4 +1,4 @@
-import { restaurants } from '../features/restaurants';
+import restaurants from '../features/restaurants';
 import getCategories from './getCategory';
 
 const context = describe;

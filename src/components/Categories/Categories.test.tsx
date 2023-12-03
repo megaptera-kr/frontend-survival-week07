@@ -1,7 +1,7 @@
 import {
   fireEvent, render, screen, waitFor,
 } from '@testing-library/react';
-import { restaurants } from '../../features/restaurants';
+import restaurants from '../../features/restaurants';
 import Categories from './Categories';
 import getCategories from '../../utils/getCategory';
 

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Restaurants from '../Restaurants/Restaurants';
-import { restaurants } from '../../features/restaurants';
+import restaurants from '../../features/restaurants';
 
 const context = describe;
 

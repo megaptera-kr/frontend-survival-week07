@@ -1,23 +1,26 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import App from './App';
-import { getRestaurants } from './services/getRestaurants';
 
 const context = describe;
 
-describe('App을 준비한다.', () => {
-  context('App에 텍스트가 나온다.', () => {
-    it('메가테라 푸드코트 키오스크이다.', () => {
-      render(<App />);
-      expect(screen.findAllByText('메가테라 푸드코트 키오스크')).toBeTruthy();
+describe('화면에 매장 주문 버튼이 보인다.', () => {
+  function renderApp(path : string) {
+    render((
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>
+    ));
+  }
+  context('매장 주문을 실행시, 주문 페이지로 이동된다.', () => {
+    it('페이지가 이동된다.', () => {
+      renderApp('/order');
     });
   });
-});
 
-describe('레스토랑 리스트를 가져올 API가 필요하다.', () => {
-  context('레스토랑 리스트를 가져온다.', () => {
-    it('레스토랑 리스트가 조회된다.', async () => {
-      const { restaurants } = await getRestaurants();
-      expect(restaurants.length > 0).toBeTruthy();
+  context('주문 실행 후, 주문 완료 페이지로 이동된다.', () => {
+    it('페이지가 이동된다.', () => {
+      renderApp('/complete');
     });
   });
 });

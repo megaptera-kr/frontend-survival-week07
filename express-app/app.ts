@@ -36,7 +36,6 @@ app.get('/orders/:id', (req, res) => {
   const { orders } = state;
   const order = orders.find((i) => i.id === id);
 
-  console.log(orders.menu)
   if (!order) {
     res.status(404)
       .send({});
