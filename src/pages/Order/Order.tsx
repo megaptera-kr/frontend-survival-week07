@@ -1,12 +1,12 @@
 // TODO: 메가테라 푸트코트 키오스크를 완성해주세요.
 import { useEffect, useRef, useState } from 'react';
-import { RestaurantsInterface } from '../Restaurants/Restaurants.interface';
+import { RestaurantsInterface } from '../../components/Restaurants/Restaurants.interface';
 import { getRestaurants } from '../../services/getRestaurants';
 import getCategories from '../../utils/getCategory';
-import Categories from '../Categories/Categories';
-import Cart from '../Cart/Cart';
-import SearchBar from '../SearchBar/SearchBar';
-import Restaurants from '../Restaurants/Restaurants';
+import Categories from '../../components/Categories/Categories';
+import Cart from '../../components/Cart/Cart';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Restaurants from '../../components/Restaurants/Restaurants';
 
 export default function Order() {
   const [categories, setCagetories] = useState<string[]>([]);

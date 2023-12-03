@@ -1,11 +1,32 @@
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import { postOrders } from '../../services/postOrders';
 import useCartStore from '../../hooks/useCartStore';
 
 function Cart() {
   const [{ cart, totalPrice }, store] = useCartStore();
+  const [orderText, setOrderText] = useState('');
+
+  const navigate = useNavigate();
+  const handleOrder = async () => {
+    const postData = {
+      menu: [...cart],
+      totalPrice,
+    };
+    const response = await postOrders(postData);
+    if (response.id) {
+      setOrderText('주문이 완료되었습니다!');
+      setTimeout(() => {
+        // store.clearCart();
+        navigate(`/complete?ordersId=${response.id}`);
+      }, 200);
+    }
+  };
+
   return (
     <div className="cart">
       <h3>장바구니</h3>
-      <ul>
+      <ul className="cart-menu-list">
         {cart.map((menu, menuIdx) => (
           // eslint-disable-next-line react/no-array-index-key
           <li key={`cart_${menuIdx}`}>
@@ -30,7 +51,7 @@ function Cart() {
           개
         </span>
         <span className="price">
-          총
+          총 결제 예상금액 :
           {' '}
           {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           원
@@ -38,11 +59,16 @@ function Cart() {
       </p>
       {totalPrice > 0
       && (
-        <>
-          <button type="button" onClick={() => store.clearCart()}>취소</button>
-          <button type="button" onClick={() => store.clearCart()}>주문하기</button>
-        </>
+        <ul className="cart-btn-list">
+          <li>
+            <button type="button" onClick={() => store.clearCart()}>취소</button>
+          </li>
+          <li>
+            <button type="button" onClick={handleOrder}>주문하기</button>
+          </li>
+        </ul>
       )}
+      {orderText}
     </div>
   );
 }

@@ -7,10 +7,7 @@ export default function App() {
       <p>원하시는 주문을 터치해주세요</p>
       <ul className="link-list">
         <li>
-          <Link to="/order">매장주문</Link>
-        </li>
-        <li>
-          <Link to="/order">주문하기</Link>
+          <Link to="/order">매장 주문</Link>
         </li>
       </ul>
     </div>

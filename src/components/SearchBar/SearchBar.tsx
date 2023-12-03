@@ -9,7 +9,7 @@ function SearchBar({ handleSetSearchKeyword } : SearchBarProps) {
     handleSetSearchKeyword(event.target.value);
   };
   return (
-    <div>
+    <div className="search-bar">
       <input
         type="text"
         placeholder="검색"

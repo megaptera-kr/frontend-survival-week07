@@ -1,5 +1,6 @@
 import App from '../App';
-import Order from '../components/Order/Order';
+import Complete from '../pages/Complete/Complete';
+import Order from '../pages/Order/Order';
 
 const Routes = [
   {
@@ -11,8 +12,8 @@ const Routes = [
     element: <Order />,
   },
   {
-    path: 'complete',
-    element: <h1>Complete</h1>,
+    path: '/complete',
+    element: <Complete />,
   },
 ];
 
