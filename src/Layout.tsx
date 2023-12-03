@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router';
 import { ClipLoader } from 'react-spinners';
-import { useMemo } from 'react';
 import Typo from './components/Typo';
 import { useSelector } from './hooks/useStore';
 

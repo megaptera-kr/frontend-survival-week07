@@ -25,7 +25,7 @@ export const setOrder = (payload: Order) => ({ type: DOMAIN_ACTION_TYPE.SET_ORDE
 
 export const updateFetchStatus = (payload: FetchStatusType) => ({ type: DOMAIN_ACTION_TYPE.UPDATE_FETCH_STATUS, payload });
 
-export const fetchResturants = () => async (dispatch: DispatchType, getState: () => State) => {
+export const fetchResturants = () => async (dispatch: DispatchType) => {
   try {
     dispatch(updateFetchStatus(FETCH_STATUS.REQUEST));
 

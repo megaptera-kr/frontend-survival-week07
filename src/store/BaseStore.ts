@@ -1,10 +1,10 @@
 import { singleton } from 'tsyringe';
-import { IAction } from './actions';
 import rootReducer from '../reducers';
 import {
   MenuList, Order, Receipt, RestaurantList,
 } from '../../types';
 import { FetchStatusType } from '../actions/domainActions';
+import { IAction } from '../actions';
 
 export type FilterKeyword = {
   name: string;

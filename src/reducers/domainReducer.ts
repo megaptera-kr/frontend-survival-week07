@@ -2,9 +2,9 @@ import {
   Order,
   RestaurantList,
 } from '../../types';
+import { IAction } from '../actions';
 import { DOMAIN_ACTION_TYPE, DomainActionTypes, FetchStatusType } from '../actions/domainActions';
 import { State } from '../store/BaseStore';
-import { IAction } from '../store/actions';
 
 export type ReducersType<ActionType extends string | number | symbol> = Record<ActionType, <Payload>(state: State, action: IAction<Payload>) => State>;
 
