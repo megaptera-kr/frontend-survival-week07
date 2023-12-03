@@ -1,20 +1,43 @@
 import {
-  act, render, renderHook, screen,
+  act, renderHook, screen, waitFor,
 } from '@testing-library/react';
-import Receipt from './Receipt';
 import fixtures from '../../fixtures';
 import useStore from '../hooks/useStore';
-import { setReceipt } from '../reducers/uiReducer';
+import { renderRouter } from '../App.test';
+import { clearReceipt, setReceipt } from '../actions/uiActions';
+
+const context = describe;
 
 describe('Receipt', () => {
-  test('전역 스토어에 영수증 데이터가 있으면, 화면에 영수증을 그린다.', () => {
-    render(<Receipt />);
-    const { result: { current } } = renderHook(() => useStore());
+  context('전역 스토어에 영수증 데이터가 있으면,', () => {
+    beforeEach(() => {
+      const { result: { current } } = renderHook(() => useStore());
 
-    act(() => current.dispatch(setReceipt(fixtures.receipt)));
+      act(() => current.dispatch(setReceipt(fixtures.receipt)));
+    });
 
-    const element = screen.getByText(fixtures.receipt.id);
+    it('화면에 영수증 아이디를 그린다.', async () => {
+      renderRouter('/order/complate');
 
-    expect(element).toBeInTheDocument();
+      await waitFor(() => {
+        const element = screen.getByTestId('ReceiptId');
+
+        expect(element.textContent?.includes(fixtures.receipt.id)).toBeTruthy();
+      });
+    });
+  });
+
+  context('전역 스토어에 영수증 데이터가 없다면', () => {
+    beforeEach(() => {
+      const { result: { current } } = renderHook(() => useStore());
+      act(() => current.dispatch(clearReceipt()));
+    });
+    it('주문 페이지로 보낸다', async () => {
+      renderRouter('/order/complate');
+
+      await waitFor(() => {
+        expect(screen.getByTestId('OrderPage')).toBeInTheDocument();
+      });
+    });
   });
 });

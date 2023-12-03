@@ -1,49 +1,75 @@
-import { Menu } from '../../types';
+import { useNavigate } from 'react-router';
+import { Order } from '../../types';
+import Grid from '../components/Grid';
 import MenuItem from '../components/MenuItem';
+import Typo from '../components/Typo';
 import useStore, { useSelector } from '../hooks/useStore';
-import { payment } from '../reducers/domainReducer';
-import { deleteCart, getTotalPrice } from '../reducers/uiReducer';
-
-export const testFn = () => {};
+import toLocaleString from '../utils/toLocaleString';
+import { getTotalPrice } from '../reducers/selector';
+import { routePath } from '../routes';
+import { payment } from '../actions/domainActions';
+import { deleteCart } from '../actions/uiActions';
 
 function Cart() {
-  // const { cart, handleRemoveCart } = useCartStorage();
-
-  // const { payment } = useFetchOrders();
-
-  // const receiptData = createReceiptData(cart);
-
+  const navigate = useNavigate();
   const { dispatch } = useStore();
+
   const cart = useSelector((state) => state.ui.cart);
   const totalPrice = useSelector(getTotalPrice);
 
   const handlePayment = () => {
-    dispatch(payment());
-  };
+    const successPayment = (order: Order) => {
+      navigate(`${routePath.orderComplate}?orderId=${order.id}`);
+    };
 
-  const handleDeleteMenu = ({ menuItem }: { menuItem: Menu }) => {
-    dispatch(deleteCart(menuItem));
+    dispatch(payment(successPayment));
   };
 
   return (
-    <article data-testid="Cart">
-      <h2>점심 바구니</h2>
-      <ul>
-        {cart.map((menu, index) => (
-          <li data-testid="CartItem" key={`${menu.id}_${index}`}>
-            <MenuItem
-              menuItem={menu}
-              index={index}
-              btnLabel="취소"
-              onClick={handleDeleteMenu}
-            />
-          </li>
-        ))}
-      </ul>
-      <button data-testid="Payment" type="button" onClick={handlePayment} disabled={!cart.length}>
-        {`합계: ${totalPrice.toLocaleString()}원 주문`}
-      </button>
-    </article>
+    <div data-testid="Cart" className="cart">
+      <Grid gridTemplateRows="20px 1fr">
+        <section>
+          <p data-testid="CartCount">
+            <Typo>
+              주문내역
+              {' '}
+              {cart.length}
+              개
+            </Typo>
+          </p>
+
+          <p data-testid="CartPrice">
+            <Typo>
+              총 결제 예상금액
+              {' '}
+              {`${toLocaleString(totalPrice)}`}
+            </Typo>
+          </p>
+        </section>
+        <Grid>
+          <ul className="cart-list">
+            <Grid>
+              {cart.map((menu, index) => (
+                <li data-testid="CartItem" key={`${menu.id}_${index}`}>
+                  <MenuItem
+                    menuItem={menu}
+                    onClick={(menuItem) => {
+                      dispatch(deleteCart(menuItem));
+                    }}
+                  />
+                </li>
+              ))}
+            </Grid>
+          </ul>
+          <Grid gridTemplateColumns="1fr 1fr">
+            <button data-testid="Cancel" type="button" onClick={() => { navigate(routePath.root); }}>취소</button>
+            <button data-testid="Payment" type="button" onClick={handlePayment}>
+              주문하기
+            </button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 

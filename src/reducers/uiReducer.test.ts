@@ -2,7 +2,7 @@ import { container } from 'tsyringe';
 import Store from '../store/BaseStore';
 import {
   addCart, clearCart, clearReceipt, deleteCart, setReceipt,
-} from './uiReducer';
+} from '../actions/uiActions';
 import fixtures from '../../fixtures';
 
 describe('uiReducer', () => {

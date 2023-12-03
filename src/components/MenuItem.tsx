@@ -1,30 +1,20 @@
 import { Menu } from '../../types';
+import toLocaleString from '../utils/toLocaleString';
 import Grid from './Grid';
 
 type Props = {
   menuItem: Menu;
-  index: number;
-  btnLabel?: string;
-  onClick?: (payload: { menuItem: Menu; menuIndex: number }) => void;
+  onClick?: (menuItem: Menu) => void;
 };
 
 function MenuItem({
-  menuItem, index, btnLabel = '선택', onClick,
+  menuItem, onClick,
 }: Props) {
-  const handleClick = () => onClick && onClick({ menuItem, menuIndex: index });
+  const handleClick = () => onClick && onClick(menuItem);
 
   return (
-    <Grid gridTemplateColumns="200px 100px" rowGap={16}>
-      {`${menuItem.name}(${menuItem.price.toLocaleString()})원`}
-      {onClick && (
-        <button
-          data-testid="PickFoodBtn"
-          name={`#${menuItem.name}${btnLabel}`}
-          onClick={handleClick}
-        >
-          {btnLabel}
-        </button>
-      )}
+    <Grid gridTemplateColumns={`200px ${onClick ? '100px' : ''}`} rowGap={16}>
+      <button data-testid={`PickFoodBtn${menuItem.name}`} className="txt" onClick={handleClick}>{`${menuItem.name}(${toLocaleString(menuItem.price)})`}</button>
     </Grid>
   );
 }

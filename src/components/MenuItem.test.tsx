@@ -11,7 +11,7 @@ describe('MenuItem', () => {
   test('메뉴를 넣으면 메뉴 이름과 금액을 렌더링한다.', () => {
     render(<MenuItem {...props} />);
     const menuName = screen.getByText(/짜장면/);
-    const menuPrice = screen.getByText(/\(8,000\)원/);
+    const menuPrice = screen.getByText(/\(8,000원\)/);
 
     expect(menuName).toBeInTheDocument();
     expect(menuPrice).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('MenuItem', () => {
   test('"메뉴 선택" 이벤트를 주입하면, "메뉴 선택" 버튼을 렌더링한다.', () => {
     render(<MenuItem {...props} onClick={() => {}} />);
 
-    const element = screen.getByTestId('PickFoodBtn');
+    const element = screen.getByTestId('PickFoodBtn짜장면');
 
     expect(element).toBeInTheDocument();
   });

@@ -4,10 +4,10 @@ import fixtures from '../../fixtures';
 import {
   DOMAIN_ACTION_TYPE,
   fetchResturants, payment, setOrder, setResturantsList, updateFetchStatus,
-} from './domainReducer';
+} from '../actions/domainActions';
 import { Order, RestaurantList } from '../../types';
 import Store from '../store/BaseStore';
-import { UI_ACTION_TYPE, addCart } from './uiReducer';
+import { UI_ACTION_TYPE, addCart } from '../actions/uiActions';
 import receipt from '../../fixtures/receipt';
 
 describe('domainReducer', () => {

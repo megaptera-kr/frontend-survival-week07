@@ -1,4 +1,12 @@
-interface FilterCondition { category: 'name' | 'category'; keyword: string; }
+import { FilterKeyword } from '../store/BaseStore';
+
+interface FilterCondition { category: string; keyword: string; }
+
+export const createFilterKeyword = (filterKeyword: FilterKeyword) => Object.entries(filterKeyword).reduce<FilterCondition[]>((prev, curr) => {
+  const [key, value] = curr;
+  prev.push({ category: key, keyword: value });
+  return prev;
+}, []);
 
 const filterList = <T>(
   targetList: T,

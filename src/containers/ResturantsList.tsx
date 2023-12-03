@@ -1,9 +1,9 @@
-import { Menu, RestaurantList } from '../../types';
+import { RestaurantList } from '../../types';
 import MenuItem from '../components/MenuItem';
-import { Loading } from './Resturants';
 import Grid from '../components/Grid';
 import useStore from '../hooks/useStore';
-import { addCart } from '../reducers/uiReducer';
+import Typo from '../components/Typo';
+import { addCart } from '../actions/uiActions';
 
 function ResturantsList({
   resturantsList,
@@ -12,39 +12,38 @@ function ResturantsList({
 }) {
   const { dispatch } = useStore();
 
-  const handleMenuClick = ({ menuItem }: { menuItem: Menu }) => {
-    dispatch(addCart(menuItem));
-  };
-
-  if (!resturantsList) return <Loading />;
-
   return (
-    <div data-testid="ResturantsList" className="main">
-      {resturantsList.map((row) => (
-        <ul
-          data-testid={`ResturantsItem${row.id}`}
-          key={row.id}
-          className="container section"
-        >
-          <Grid gridTemplateColumns=".3fr .3fr 1fr">
-            <li><strong>{row.name}</strong></li>
-            <li><strong>{row.category}</strong></li>
-            <li>
-              <ul className="row lv2">
-                {row.menu.map((menuItem, index) => (
-                  <li key={index}>
-                    <MenuItem
-                      menuItem={menuItem}
-                      index={index}
-                      onClick={handleMenuClick}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </Grid>
-        </ul>
-      ))}
+    <div data-testid="ResturantsList" className="resturants-wrapper">
+      <Grid>
+        {resturantsList.map((row) => (
+          <ul
+            data-testid={`ResturantsItem${row.id}`}
+            key={row.id}
+            className="container section"
+          >
+            <Grid gridTemplateColumns=".3fr .3fr 1fr">
+              <li><Typo>{row.name}</Typo></li>
+              <li><Typo>{row.category}</Typo></li>
+              <li>
+                <ul>
+                  <Grid>
+                    {row.menu.map((menuItem, index) => (
+                      <li key={index}>
+                        <MenuItem
+                          menuItem={menuItem}
+                          onClick={(menuItem) => {
+                            dispatch(addCart(menuItem));
+                          }}
+                        />
+                      </li>
+                    ))}
+                  </Grid>
+                </ul>
+              </li>
+            </Grid>
+          </ul>
+        ))}
+      </Grid>
     </div>
   );
 }

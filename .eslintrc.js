@@ -76,5 +76,6 @@ module.exports = {
     'react/button-has-type': 'off',
     'no-console': 'off',
     'class-methods-use-this': 'warn',
+    'import/prefer-default-export': 'off',
   },
 };

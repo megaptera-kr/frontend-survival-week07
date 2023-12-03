@@ -1,33 +1,58 @@
 import {
-  render, screen, renderHook, act,
+  screen, renderHook, act, fireEvent, waitFor,
 } from '@testing-library/react';
 import fixtures from '../../fixtures';
-import Cart from './Cart';
 import useStore from '../hooks/useStore';
-import { addCart } from '../reducers/uiReducer';
+import { renderRouter } from '../App.test';
+import { addCart } from '../actions/uiActions';
+
+const context = describe;
 
 describe('Cart', () => {
-  test('로컬 스토리지의 장바구니에 데이터가 담겨 있다면 해당 데이터를 그린다', () => {
-    render(<Cart />);
-    const { result: { current } } = renderHook(() => useStore());
+  const routerRender = () => renderRouter('/order');
 
-    act(() => {
-      fixtures.foods.forEach((menu) => {
-        current.dispatch(addCart(menu));
+  context('전역 스토어의 장바구니 데이터가 담겨 있다면', () => {
+    it('담긴 메뉴를 렌더링한다.', () => {
+      routerRender();
+      const { result: { current } } = renderHook(() => useStore());
+
+      act(() => {
+        fixtures.foods.forEach((menu) => {
+          current.dispatch(addCart(menu));
+        });
       });
+
+      const [item] = screen.getAllByTestId('CartItem');
+
+      expect(item).toBeInTheDocument();
     });
 
-    const [item] = screen.getAllByTestId('CartItem');
+    it('담긴 메뉴의 개수를 표기한다.', () => {
+      routerRender();
+      const element = screen.getByTestId('CartCount');
 
-    expect(item).toBeInTheDocument();
+      expect(element).toHaveTextContent(`${fixtures.foods.length}개`);
+    });
+
+    it('메뉴의 합산을 화면에 그린다.', () => {
+      routerRender();
+      const totalPrice = fixtures.foods.reduce((prev, curr) => prev + curr.price, 0).toLocaleString();
+
+      const element = screen.getByTestId('CartPrice');
+
+      expect(element).toHaveTextContent(`${totalPrice}`);
+    });
   });
 
-  test('로컬 스토리지의 장바구니에 담겨져있는 물품들의 가격에 합산이 버튼에 그려진다.', () => {
-    render(<Cart />);
-    const totalPrice = fixtures.foods.reduce((prev, curr) => prev + curr.price, 0).toLocaleString();
+  it('취소 버튼을 누르면 메인 화면으로 돌아간다.', async () => {
+    routerRender();
 
-    const element = screen.getByTestId('Payment');
+    const cancelBtn = screen.getByTestId('Cancel');
 
-    expect(element).toHaveTextContent(`${totalPrice}`);
+    fireEvent.click(cancelBtn);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('HomePage')).toBeInTheDocument();
+    });
   });
 });

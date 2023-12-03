@@ -1,10 +1,15 @@
 import { singleton } from 'tsyringe';
 import { IAction } from './actions';
-import { FetchStatusType } from '../reducers/domainReducer';
 import rootReducer from '../reducers';
 import {
   MenuList, Order, Receipt, RestaurantList,
 } from '../../types';
+import { FetchStatusType } from '../actions/domainActions';
+
+export type FilterKeyword = {
+  name: string;
+  category: string;
+}
 
 interface IState {
   domain: {
@@ -15,6 +20,7 @@ interface IState {
     fetchStatus: FetchStatusType | null;
     cart: MenuList;
     receipt: Receipt | null;
+    filterKeyword: FilterKeyword
   }
 }
 
@@ -27,6 +33,10 @@ export const initialState: IState = {
     fetchStatus: null,
     cart: [],
     receipt: null,
+    filterKeyword: {
+      name: '',
+      category: '',
+    },
   },
 };
 

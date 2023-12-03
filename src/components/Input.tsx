@@ -1,4 +1,6 @@
 import { useCallback } from 'react';
+import Typo from './Typo';
+import Grid from './Grid';
 
 interface Props {
   label?: string;
@@ -18,16 +20,21 @@ function Input({
   );
 
   return (
-    <div className="input">
-      <input
-        data-testid="Input"
-        type="text"
-        id="input-검색"
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-      />
-    </div>
+    <Grid gridTemplateColumns="30px 1fr" alignItems="center">
+      <label htmlFor="input-검색">
+        <Typo>{label}</Typo>
+      </label>
+      <div className="input">
+        <input
+          data-testid="Input"
+          type="text"
+          id="input-검색"
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+        />
+      </div>
+    </Grid>
   );
 }
 
