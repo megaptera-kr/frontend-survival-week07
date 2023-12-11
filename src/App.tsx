@@ -1,5 +1,14 @@
+import React from 'react';
+import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
+import routes from './routes';
+
 export default function App() {
+  const router = createBrowserRouter(routes);
+
   return (
-    <p>과제를 완성해 주세요!</p>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   );
 }
