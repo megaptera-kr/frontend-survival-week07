@@ -1,5 +1,16 @@
+import {
+  RouterProvider,
+} from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
+
+import routes from './routes';
+
+const route = createBrowserRouter(routes);
+
 export default function App() {
   return (
-    <p>과제를 완성해 주세요!</p>
+    <div>
+      <RouterProvider router={route} />
+    </div>
   );
 }
