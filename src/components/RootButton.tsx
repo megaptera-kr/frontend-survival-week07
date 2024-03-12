@@ -5,7 +5,7 @@ type RootButtonProps = {
   path: string;
 };
 
-export default function RootButton({ buttonTitle, path }: RootButtonProps) {
+function RootButton({ buttonTitle, path }: RootButtonProps) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/${path}`, { state: { buttonTitle } });
@@ -25,3 +25,5 @@ export default function RootButton({ buttonTitle, path }: RootButtonProps) {
     </button>
   );
 }
+
+export default RootButton;
