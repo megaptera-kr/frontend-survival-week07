@@ -1,6 +1,6 @@
 import RootButton from '../components/RootButton';
 
-export default function RootButtonPage() {
+function RootButtonPage() {
   return (
     <div>
       <h2>원하시는 주문을 터치해주세요</h2>
@@ -11,3 +11,5 @@ export default function RootButtonPage() {
     </div>
   );
 }
+
+export default RootButtonPage;
