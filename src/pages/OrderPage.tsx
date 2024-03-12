@@ -43,7 +43,7 @@ function OrderPage() {
         </div>
         <div>
           <button type='button'>취소</button>
-          <Link to='/order/complete?orderId=1'>주문하기</Link>
+          <button type='button'>주문하기</button>
         </div>
       </section>
     </div>

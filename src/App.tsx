@@ -1,27 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Layout from './pages/Layout';
-import RootButtonPage from './pages/RootButtonPage';
-import OrderPage from './pages/OrderPage';
-import OrderDetailPage from './pages/OrderDetailPage';
+import routes from './routes';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Layout />,
-    children: [
-      { index: true, element: <RootButtonPage /> },
-      {
-        path: '/order',
-        element: <OrderPage />,
-      },
-      {
-        path: '/order/complete',
-        element: <OrderDetailPage />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(routes);
 
 export default function App() {
   return (

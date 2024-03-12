@@ -1,0 +1,19 @@
+{
+  "editor.rulers": [80],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "trailing-spaces.trimOnSave": true,
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "white",
+      "backgroundColor": "#0d9903"
+    },
+    {
+      "text": "FIXME:",
+      "color": "white",
+      "backgroundColor": "#d62d0b"
+    }
+  ]
+}
