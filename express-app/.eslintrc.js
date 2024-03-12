@@ -2,14 +2,12 @@ module.exports = {
   env: {
     es2021: true,
     node: true,
+    jest: true,
   },
-  extends: [
-
-  ],
+  extends: ['prettier'],
   overrides: [
     {
-      extends: [
-      ],
+      extends: [],
       files: ['*.ts'],
     },
   ],
