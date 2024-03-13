@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import useSetButton from '../hooks/useSetButton';
 import useSearchText from '../hooks/useSearchText';
@@ -9,13 +8,14 @@ import RestaurantTable from '../components/RestaurantTable';
 import Cart from '../components/Cart';
 
 function OrderPage() {
-  // const { state } = useLocation();
-  // const buttonTitle = state?.buttonTitle;
+  const { state } = useLocation();
+  const buttonTitle = state?.buttonTitle;
   const [searchText, setSearchText] = useSearchText('');
   const [buttonName, setButtonName] = useSetButton('전체');
 
   return (
     <div style={{ maxWidth: '500px' }}>
+      <div>{buttonTitle} 주문입니다</div>
       <SearchBar setSearchText={setSearchText} setButtonName={setButtonName} />
       <hr />
       <RestaurantTable restaurantName={searchText} categoryName={buttonName} />
