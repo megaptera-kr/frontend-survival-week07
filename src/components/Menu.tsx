@@ -14,9 +14,13 @@ export default function Menu({ menu }: MenuProps) {
         padding: '0.2rem 0.2rem',
       }}
     >
-      {menu.map((item: MenuModel) => (
-        <MenuItem key={item.getId()} menuItem={item} />
-      ))}
+      {!menu.length ? (
+        <p>판매할 수 있는 메뉴가 없습니다.</p>
+      ) : (
+        menu.map((item: MenuModel) => (
+          <MenuItem key={item.getId()} menuItem={item} />
+        ))
+      )}
     </div>
   );
 }
