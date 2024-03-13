@@ -9,7 +9,10 @@ const routes = [
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <RootButtonPage /> },
+      {
+        index: true,
+        element: <RootButtonPage />,
+      },
       {
         path: '/order',
         element: <OrderPage />,

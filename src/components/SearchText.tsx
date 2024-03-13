@@ -1,11 +1,12 @@
 import useFieldRef from '../hooks/useFieldRef';
 
 type SearchTextProps = {
+  label: string;
   placeholder: string;
   setSearchText: (v: string) => void;
 };
 
-function SearchText({ placeholder, setSearchText }: SearchTextProps) {
+function SearchText({ label, placeholder, setSearchText }: SearchTextProps) {
   const [, current] = useFieldRef('searchText');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +16,7 @@ function SearchText({ placeholder, setSearchText }: SearchTextProps) {
   return (
     <div>
       <section>
-        <label htmlFor={current}>검색</label>
+        <label htmlFor={current}>{label}</label>
         <input id={current} placeholder={placeholder} onChange={handleChange} />
       </section>
     </div>

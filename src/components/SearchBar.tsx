@@ -10,6 +10,7 @@ function SearchBar({ setSearchText, setButtonName }: SearchBarProp) {
   return (
     <div>
       <SearchText
+        label='검색'
         placeholder='식당 이름을 입력해주세요'
         setSearchText={setSearchText}
       />

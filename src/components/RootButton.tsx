@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
+import { validatePathFormat } from '../utils/common';
+
 type RootButtonProps = {
   buttonTitle: string;
   path: string;
@@ -7,9 +9,12 @@ type RootButtonProps = {
 
 function RootButton({ buttonTitle, path }: RootButtonProps) {
   const navigate = useNavigate();
+
   const handleClick = () => {
-    navigate(`/${path}`, { state: { buttonTitle } });
+    navigate(`${path}`, { state: { buttonTitle } });
   };
+
+  validatePathFormat(path);
 
   return (
     <button
