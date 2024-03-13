@@ -1,7 +1,7 @@
 import Menu from './MenuType';
 
 type Restaurant = {
-  id: string;
+  id: number;
   name: string;
   category: string;
   menu: Menu[];

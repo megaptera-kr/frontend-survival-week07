@@ -8,8 +8,9 @@ function RestaurantController(app: Express) {
   app.get('/restaurants', (req, res) => {
     const { categoryName, restaurantName } = req.query;
 
-    const queryCategoryName = !categoryName ? '전체' : categoryName;
-    const queryRestaurantName = restaurantName;
+    const queryCategoryName = !categoryName ? '전체' : (categoryName as string);
+    const queryRestaurantName =
+      restaurantName && (restaurantName as string).trim();
 
     const filteredRestaurants = restaurants.filter((restaurant: Restaurant) => {
       const isCategoryMatch =
@@ -17,7 +18,7 @@ function RestaurantController(app: Express) {
 
       const isNameMatch =
         !queryRestaurantName ||
-        restaurant.name.includes(queryRestaurantName?.toString());
+        restaurant.name.includes(queryRestaurantName.toString());
 
       return isNameMatch && isCategoryMatch;
     });
@@ -27,7 +28,7 @@ function RestaurantController(app: Express) {
 
   app.get('/restaurants/:id', (req, res) => {
     const restaurant: Restaurant | undefined = restaurants.find(
-      (item: Restaurant) => item.id === req.params.id,
+      (item: Restaurant) => item.id === Number(req.params.id),
     );
 
     if (!restaurant) {
