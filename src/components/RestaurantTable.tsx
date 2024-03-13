@@ -16,9 +16,9 @@ function RestaurantTable({
   const { restaurants } = useFetchRestaurants({ categoryName, restaurantName });
 
   return (
-    <div>
+    <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
       <section>
-        <table>
+        <table style={{ borderCollapse: 'collapse' }}>
           <tbody>
             {restaurants.map((restaurant: RestaurantModel) => (
               <RestaurantTableRow

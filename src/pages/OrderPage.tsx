@@ -15,7 +15,7 @@ function OrderPage() {
   const [buttonName, setButtonName] = useSetButton('전체');
 
   return (
-    <div>
+    <div style={{ maxWidth: '500px' }}>
       <SearchBar setSearchText={setSearchText} setButtonName={setButtonName} />
       <hr />
       <RestaurantTable restaurantName={searchText} categoryName={buttonName} />
