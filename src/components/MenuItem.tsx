@@ -5,9 +5,15 @@ type MenuItemProps = {
 };
 
 export default function MenuItem({ menuItem }: MenuItemProps) {
+  const { id, name, nameAndPrice } = {
+    id: menuItem.getId(),
+    name: menuItem.getName(),
+    nameAndPrice: menuItem.getNamePrice(),
+  };
+
   return (
-    <button type='button' key={menuItem.getId()}>
-      {menuItem.getNamePrice()}
+    <button type='button' name={`#${id}-${name}`}>
+      {nameAndPrice}
     </button>
   );
 }

@@ -3,8 +3,10 @@ import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router';
 
 import routes from './routes';
+import fixtures from '../fixtures';
 
 jest.mock('./hooks/useFetchCategories');
+jest.mock('./hooks/useFetchRestaurants');
 
 const context = describe;
 
@@ -33,24 +35,51 @@ describe('routes', () => {
   });
 
   context('when routes to /order', () => {
-    it('검색 입력란과, 카테고리 버튼과, 주문하기/취소 버튼이 보인다.', async () => {
+    it('검색 입력란이 보인다.', async () => {
       const router = createMemoryRouter(routes, {
         initialEntries: ['/order'],
         initialIndex: 0,
       });
-
       render(<RouterProvider router={router} />);
 
       await screen.queryByText('검색');
       await screen.queryByText('식당 이름을 입력해주세요');
+    });
+
+    it('카테고리 버튼이 보인다.', async () => {
+      const router = createMemoryRouter(routes, {
+        initialEntries: ['/order'],
+        initialIndex: 0,
+      });
+      render(<RouterProvider router={router} />);
 
       await screen.getByRole('button', { name: '전체' });
       await screen.getByRole('button', { name: '중식' });
       await screen.getByRole('button', { name: '한식' });
       await screen.getByRole('button', { name: '일식' });
+    });
+
+    it('주문하기/취소 버튼이 보인다.', async () => {
+      const router = createMemoryRouter(routes, {
+        initialEntries: ['/order'],
+        initialIndex: 0,
+      });
+      render(<RouterProvider router={router} />);
 
       await screen.getByRole('button', { name: '주문하기' });
       await screen.getByRole('button', { name: '취소' });
+    });
+
+    it('레스토랑 이름이 보인다.', async () => {
+      const router = createMemoryRouter(routes, {
+        initialEntries: ['/order'],
+        initialIndex: 0,
+      });
+      render(<RouterProvider router={router} />);
+      const { restaurants } = fixtures;
+      const restaurant = restaurants[0];
+
+      await screen.getByText(restaurant.name);
     });
   });
 
