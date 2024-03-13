@@ -4,6 +4,8 @@ import { RouterProvider, createMemoryRouter } from 'react-router';
 
 import routes from './routes';
 
+jest.mock('./hooks/useFetchCategories');
+
 const context = describe;
 
 describe('routes', () => {
@@ -54,19 +56,14 @@ describe('routes', () => {
 
   context('when routes to /order/complete', () => {
     it('', () => {
-      // TODO: ErrorPage
+      // TODO:
       expect(1).toBe(1);
     });
   });
 
   context('when routes to /order/complete?123', () => {
     it('', async () => {
-      // TODO: How to test the case like this?
-      // await screen.queryByText('주문이 완료되었습니다!');
-      // await screen.queryByText('주문번호');
-      // await screen.queryByText('주문목록');
-      // await screen.queryByText('총가격');
-      // await screen.queryByText('메인화면으로 돌아가기');
+      // TODO:
     });
   });
 });

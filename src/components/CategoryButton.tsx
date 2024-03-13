@@ -1,13 +1,17 @@
 type CategoryButtonProps = {
-  selectedCategoryName: string;
+  categoryName: string;
+  setCategoryName: (v: string) => void;
 };
 
-function CategoryButton({ selectedCategoryName }: CategoryButtonProps) {
-  // TODO: connect onClick event
-
+function CategoryButton({
+  categoryName,
+  setCategoryName,
+}: CategoryButtonProps) {
   return (
     <section>
-      <button type='button'>{selectedCategoryName}</button>
+      <button type='button' onClick={() => setCategoryName(categoryName)}>
+        {categoryName}
+      </button>
     </section>
   );
 }

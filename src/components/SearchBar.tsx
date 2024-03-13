@@ -1,11 +1,15 @@
 import SearchText from './SearchText';
 import CategoryButtons from './CategoryButtons';
 
-function SearchBar() {
+type SearchBarProp = {
+  setButtonName: (v: string) => void;
+};
+
+function SearchBar({ setButtonName }: SearchBarProp) {
   return (
     <div>
       <SearchText />
-      <CategoryButtons />
+      <CategoryButtons setCategoryButtonName={setButtonName} />
     </div>
   );
 }

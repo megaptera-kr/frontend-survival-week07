@@ -4,7 +4,6 @@ function OrderDetailPage() {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const orderId = params.get('orderId');
-  console.log(orderId);
 
   return <div>order detail-{orderId}</div>;
 }
