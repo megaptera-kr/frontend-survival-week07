@@ -1,5 +1,6 @@
-import MenuType from '../types/MenuType';
 import { moneyformat } from '../utils/common';
+
+import MenuType from '../types/MenuType';
 
 class MenuModel {
   #id: number;
