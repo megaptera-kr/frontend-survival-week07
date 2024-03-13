@@ -1,29 +1,31 @@
-function RestaurantTable() {
+import useFetchRestaurants from '../hooks/useFetchRestaurants';
+
+import RestaurantTableRow from './RestaurantTableRow';
+
+import RestaurantModel from '../models/RestaurantModel';
+
+type RestaurantTableProps = {
+  categoryName: string;
+  restaurantName: string;
+};
+
+function RestaurantTable({
+  categoryName,
+  restaurantName,
+}: RestaurantTableProps) {
+  const { restaurants } = useFetchRestaurants({ categoryName, restaurantName });
+
   return (
     <div>
       <section>
         <table>
           <tbody>
-            <tr>
-              <td>메가 반점</td>
-              <td>
-                <ul>
-                  <li>짜장면 8,000원</li>
-                  <li>짜장면 8,000원</li>
-                  <li>짜장면 8,000원</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td>메가 분식</td>
-              <td>
-                <ul>
-                  <li>떡볶이 8,000원</li>
-                  <li>오뎅 8,000원</li>
-                  <li>김밥 8,000원</li>
-                </ul>
-              </td>
-            </tr>
+            {restaurants.map((restaurant: RestaurantModel) => (
+              <RestaurantTableRow
+                key={restaurant.getId()}
+                restaurant={restaurant}
+              />
+            ))}
           </tbody>
         </table>
       </section>

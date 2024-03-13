@@ -15,7 +15,7 @@ function OrderPage() {
     <div>
       <SearchBar setButtonName={setButtonName} />
       <hr />
-      <RestaurantTable />
+      <RestaurantTable categoryName={buttonName} restaurantName='' />
       <hr />
       <Cart />
     </div>
