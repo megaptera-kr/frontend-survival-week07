@@ -19,6 +19,13 @@ function RestaurantTable({
     <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
       <section>
         <table style={{ borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th>레스토랑</th>
+              <th>메뉴</th>
+            </tr>
+          </thead>
+
           <tbody>
             {restaurants.map((restaurant: RestaurantModel) => (
               <RestaurantTableRow
