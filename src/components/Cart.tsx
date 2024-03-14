@@ -1,10 +1,9 @@
 import useCartStore from '../hooks/useCartStore';
-import CartItem from './CartItem';
 
-import CartItemModel from '../models/CartItemModel';
+import CartItems from './CartItems';
 
 function Cart() {
-  const [{ cart }, cartStore] = useCartStore();
+  const [{ cart }] = useCartStore();
 
   return (
     <section>
@@ -20,23 +19,12 @@ function Cart() {
       </div>
 
       <div>
-        {!cart.cartItems.length ? (
-          <div
-            style={{
-              display: 'flex',
-              marginBottom: '1rem',
-              justifyContent: 'center',
-            }}
-          >
-            <i>선택한 메뉴가 없습니다.</i>
-          </div>
-        ) : (
-          cart.cartItems.map((item: CartItemModel) => (
-            <CartItem key={item.id} item={item} />
-          ))
-        )}
+        <CartItems cartItems={cart.cartItems} />
       </div>
-      <div>
+
+      <hr />
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
         <button type='button'>취소</button>
         <button type='button'>주문하기</button>
       </div>
