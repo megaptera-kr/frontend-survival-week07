@@ -12,6 +12,10 @@ export default function Menu({ menus }: MenuItemProps) {
     //
   };
 
+  if (!menus.length) {
+    return <p>메뉴가 존재하지 않습니다.</p>;
+  }
+
   return (
     <ul>
       {menus.map((menu, index) => {
