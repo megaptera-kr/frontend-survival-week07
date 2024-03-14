@@ -15,7 +15,9 @@ describe('router', () => {
   context('when the current path is “/”', () => {
     it('renders the intro page', () => {
       renderRouter('/');
-      screen.getByText('인트로페이지');
+      screen.getByText('원하시는 주문을 터치해주세요');
+      screen.getByText(/매장 주문/);
+      screen.getByText(/전체 포장/);
     });
   });
 
