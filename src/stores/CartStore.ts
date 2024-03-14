@@ -5,14 +5,11 @@ import CartModel from '../models/CartModel';
 import CartItemModel from '../models/CartItemModel';
 
 import OrderKindType from '../types/OrderKindType';
-import { ORDER_TYPE_STORE } from '../const/ConstOrder';
 
 @singleton()
 @Store()
 class CartStore {
   cart: CartModel = new CartModel();
-
-  orderKind: OrderKindType | '' = ORDER_TYPE_STORE;
 
   @Action()
   addItem(cartItem: CartItemModel) {
@@ -30,8 +27,8 @@ class CartStore {
   }
 
   @Action()
-  setOrderKind(kind: OrderKindType | '' = '') {
-    this.orderKind = !kind ? '' : kind;
+  setOrderKind(orderKind: OrderKindType | '' = '') {
+    this.cart = this.cart.setOrderKind(orderKind);
   }
 }
 
