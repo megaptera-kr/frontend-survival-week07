@@ -2,6 +2,7 @@ import CartItemModel from './CartItemModel';
 
 import BadParamError from '../exceptions/BadParamError';
 import NotFoundError from '../exceptions/NotFoundError';
+import { moneyformat } from '../utils/common';
 
 export const MIN_QUANTITY = 1;
 export const MAX_QUANTITY = 20;
@@ -73,6 +74,21 @@ class CartModel {
   clearItems(): CartModel {
     this.cartItems.length = 0;
     return new CartModel();
+  }
+
+  totalNumItems(): number {
+    return this.cartItems.length;
+  }
+
+  totalPrice(): number {
+    return this.cartItems.reduce(
+      (acc, item: CartItemModel) => acc + item.price(),
+      0,
+    );
+  }
+
+  totalPriceFormatted(): string {
+    return moneyformat(this.totalPrice());
   }
 }
 
