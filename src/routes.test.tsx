@@ -66,8 +66,9 @@ describe('routes', () => {
       });
       render(<RouterProvider router={router} />);
 
+      await screen.getByRole('button', { name: '뒤로가기' });
+      await screen.getByRole('button', { name: '전체취소' });
       await screen.getByRole('button', { name: '주문하기' });
-      await screen.getByRole('button', { name: '취소' });
     });
 
     it('레스토랑 이름이 보인다.', async () => {
