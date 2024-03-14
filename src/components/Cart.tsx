@@ -1,9 +1,20 @@
+import { useNavigate } from 'react-router';
 import useCartStore from '../hooks/useCartStore';
 
 import CartItems from './CartItems';
 
 function Cart() {
-  const [{ cart }] = useCartStore();
+  const naviagte = useNavigate();
+  const [{ cart, orderKind }, cartStroe] = useCartStore();
+
+  const handleClickBackButton = () => {
+    naviagte('/');
+    cartStroe.setOrderKind();
+  };
+
+  const handleClickCancel = () => {
+    cartStroe.clearItems();
+  };
 
   return (
     <section>
@@ -25,7 +36,12 @@ function Cart() {
       <hr />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-        <button type='button'>취소</button>
+        <button type='button' onClick={handleClickBackButton}>
+          뒤로가기
+        </button>
+        <button type='button' onClick={handleClickCancel}>
+          전체취소
+        </button>
         <button type='button'>주문하기</button>
       </div>
     </section>

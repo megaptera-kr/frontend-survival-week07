@@ -30,8 +30,8 @@ class CartStore {
   }
 
   @Action()
-  setOrderType(kind: OrderKindType | '') {
-    this.orderKind = kind;
+  setOrderKind(kind: OrderKindType | '' = '') {
+    this.orderKind = !kind ? '' : kind;
   }
 }
 

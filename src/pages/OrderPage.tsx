@@ -15,7 +15,7 @@ function OrderPage() {
   const [, cartStore] = useCartStore();
 
   useEffect(() => {
-    cartStore.setOrderType(orderKindType);
+    cartStore.setOrderKind(orderKindType);
   }, [orderKindType]);
 
   const [searchText, setSearchText] = useSearchText('');
