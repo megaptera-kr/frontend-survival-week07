@@ -6,6 +6,9 @@ type RestaurantsProps = {
 };
 
 export default function Restaurants({ restaurants }: RestaurantsProps) {
+  if (!restaurants.length) {
+    return <div>식당이 존재하지 않습니다.</div>;
+  }
   return (
     <div>
       {restaurants.map((restaurant) => (
