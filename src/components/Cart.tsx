@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router';
+
 import useCartStore from '../hooks/useCartStore';
+import useOrder from '../hooks/useOrder';
 
 import CartItems from './CartItems';
 
 function Cart() {
   const naviagte = useNavigate();
-  const [{ cart, orderKind }, cartStroe] = useCartStore();
+  const [{ cart }, cartStroe] = useCartStore();
+  const { handleOrderCreate } = useOrder(cart);
 
   const handleClickBackButton = () => {
     naviagte('/');
@@ -22,7 +25,7 @@ function Cart() {
         style={{ display: 'flex', width: '100%', justifyContent: 'flex-end' }}
       >
         <p style={{ marginRight: '1rem' }}>
-          주문내역 <span>{cart.totalNumItems()}</span>개
+          주문내역 <span>{cart.totalItemNum()}</span>개
         </p>
         <p>
           총 결제 예상금액 <span>{cart.totalPriceFormatted()}원</span>
@@ -42,7 +45,9 @@ function Cart() {
         <button type='button' onClick={handleClickCancel}>
           전체취소
         </button>
-        <button type='button'>주문하기</button>
+        <button type='button' onClick={handleOrderCreate}>
+          주문하기
+        </button>
       </div>
     </section>
   );

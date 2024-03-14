@@ -1,9 +1,10 @@
-import Menu from './MenuType';
+import CartItem from './CartItemType';
 
 type Receipt = {
   id: string;
-  menu: Menu[];
+  orderKind: string;
   totalPrice: number;
+  menuItems: CartItem[];
 };
 
 export default Receipt;

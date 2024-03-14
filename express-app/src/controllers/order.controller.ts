@@ -6,13 +6,11 @@ import Receipt from '../types/ReceiptType';
 function OrderController(app: Express) {
   app.post('/orders', (req: Request<Order>, res: Response) => {
     const order: Order = req.body;
-
-    const orderId = Date.now().toString();
-
     const response: Receipt = {
-      id: orderId,
-      menu: order.menu,
+      id: Date.now().toString(),
+      orderKind: order.orderKind,
       totalPrice: order.totalPrice,
+      menuItems: order.menuItems,
     };
 
     res.status(201).send(response);

@@ -1,8 +1,10 @@
-import Menu from './MenuType';
+import CartItem from './CartItemType';
 
 type Order = {
-  menu: Menu[];
+  orderKind: string;
+  totalItemNum: number;
   totalPrice: number;
+  menuItems: CartItem[];
 };
 
 export default Order;

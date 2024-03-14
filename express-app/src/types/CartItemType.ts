@@ -1,4 +1,4 @@
-type CartItemType = {
+type CartItem = {
   id: string;
   menuId: number;
   menuName: string;
@@ -9,4 +9,4 @@ type CartItemType = {
   quantity: number;
 };
 
-export default CartItemType;
+export default CartItem;

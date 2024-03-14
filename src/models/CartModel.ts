@@ -95,7 +95,7 @@ class CartModel {
 
   // ---------------------------------------------------------------------------
   // Properties
-  totalNumItems(): number {
+  totalItemNum(): number {
     return this.cartItems.reduce(
       (acc, item: CartItemModel) => acc + item.quantity,
       0,
