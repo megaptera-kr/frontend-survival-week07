@@ -8,12 +8,17 @@
     {
       "text": "TODO:",
       "color": "white",
-      "backgroundColor": "#0d9903"
+      "backgroundColor": "#d17300"
     },
     {
       "text": "FIXME:",
       "color": "white",
-      "backgroundColor": "#d62d0b"
+      "backgroundColor": "#d12a00"
+    },
+    {
+      "text": "NOTE:",
+      "color": "white",
+      "backgroundColor": "#6b6b6b"
     }
   ]
 }
