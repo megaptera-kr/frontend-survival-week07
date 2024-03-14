@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CartItemType from '../types/CartItemType';
 import MenuItemModel from './MenuItemModel';
 import RestaurantModel from './RestaurantModel';
+import { moneyformat } from '../utils/common';
 
 class CartItemModel {
   readonly id: string;
@@ -62,6 +63,10 @@ class CartItemModel {
 
   price(): number {
     return this.menuPrice * this.quantity;
+  }
+
+  priceFormatted(): string {
+    return moneyformat(this.price());
   }
 }
 
