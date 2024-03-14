@@ -1,7 +1,7 @@
 import MenuType from '../types/MenuType';
 import RestaurantType from '../types/RestaurantType';
 
-import MenuModel from './MenuModel';
+import MenuItemModel from './MenuItemModel';
 
 class RestaurantModel {
   #id: number;
@@ -10,13 +10,13 @@ class RestaurantModel {
 
   #category: string;
 
-  #menu: MenuModel[];
+  #menu: MenuItemModel[];
 
   constructor({ id, name, category, menu }: RestaurantType) {
     this.#id = id;
     this.#name = name;
     this.#category = category;
-    this.#menu = menu.map((item: MenuType) => new MenuModel({ ...item }));
+    this.#menu = menu.map((item: MenuType) => new MenuItemModel({ ...item }));
   }
 
   getId(): number {
@@ -31,7 +31,7 @@ class RestaurantModel {
     return this.#category;
   }
 
-  getMenu(): MenuModel[] {
+  getMenu(): MenuItemModel[] {
     return this.#menu;
   }
 }

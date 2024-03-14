@@ -1,18 +1,18 @@
 import CartModel, { MIN_QUANTITY, MAX_QUANTITY } from './CartModel';
+import CartItemModel from './CartItemModel';
 
-import CartItemType from '../types/CartItemType';
 import BadParamError from '../exceptions/BadParamError';
 import NotFoundError from '../exceptions/NotFoundError';
 
 const context = describe;
 
 describe('CartModel', () => {
-  let model: CartModel;
-  let obj: CartItemType;
+  let cart: CartModel;
+  let cartItem: CartItemModel;
 
   beforeEach(() => {
-    model = new CartModel();
-    obj = {
+    cart = new CartModel();
+    cartItem = new CartItemModel({
       menuId: 1,
       menuName: '김밥',
       menuPrice: 3000,
@@ -20,13 +20,13 @@ describe('CartModel', () => {
       restaurantName: '레스토랑',
       categoryName: '분식',
       quantity: 1,
-    };
+    });
   });
 
   context('When CartModel is created', () => {
     it('cartItems is [] and length 0', () => {
-      expect(model.cartItems).toHaveLength(0);
-      expect(model.cartItems).toEqual([]);
+      expect(cart.cartItems).toHaveLength(0);
+      expect(cart.cartItems).toEqual([]);
     });
   });
 
@@ -44,114 +44,125 @@ describe('CartModel', () => {
   // NOTE: Avoid try catch when assert throw error
   context('When upsertItem function excuted with quantity -1', () => {
     it('throw BadParamError', () => {
-      obj.quantity = -1;
-      expect(() => model.upsertItem({ ...obj })).toThrow(BadParamError);
+      const obj = { ...cartItem, quantity: -1 };
+      expect(() => cart.upsertItem(new CartItemModel(obj))).toThrow(
+        BadParamError,
+      );
     });
   });
 
   context('When upsertItem function excuted with quantity 0', () => {
     it('throw BadParamError', () => {
-      obj.quantity = 0;
-      expect(() => model.upsertItem({ ...obj })).toThrow(BadParamError);
+      const obj = { ...cartItem, quantity: 0 };
+      expect(() => cart.upsertItem(new CartItemModel(obj))).toThrow(
+        BadParamError,
+      );
     });
   });
 
   context('When upsertItem function excuted with quantity 21', () => {
     it('throw BadParamError', () => {
-      obj.quantity = 21;
-      expect(() => model.upsertItem({ ...obj })).toThrow(BadParamError);
+      const obj = { ...cartItem, quantity: 21 };
+      expect(() => cart.upsertItem(new CartItemModel(obj))).toThrow(
+        BadParamError,
+      );
     });
   });
 
   context('When upsertItem function excuted with quantity 1', () => {
     it('not throw BadParamError', () => {
-      obj.quantity = 1;
-      expect(() => model.upsertItem({ ...obj })).not.toThrow(BadParamError);
+      expect(() => cart.upsertItem(new CartItemModel(cartItem))).not.toThrow(
+        BadParamError,
+      );
     });
   });
 
   context('When upsertItem function excuted with quantity 20', () => {
     it('not throw BadParamError', () => {
-      obj.quantity = 20;
-      expect(() => model.upsertItem({ ...obj })).not.toThrow(BadParamError);
+      const obj = { ...cartItem, quantity: 20 };
+
+      expect(() => cart.upsertItem(new CartItemModel(obj))).not.toThrow(
+        BadParamError,
+      );
     });
   });
 
   // insertItem
   context('When upsertItem func excuted once normally', () => {
     it('menuItem length toHaveLength is 1', () => {
-      obj.quantity = 1;
-      model = model.upsertItem({ ...obj });
-      expect(model.cartItems).toHaveLength(1);
+      cart = cart.upsertItem(new CartItemModel(cartItem));
+
+      expect(cart.cartItems).toHaveLength(1);
     });
   });
 
   // insertItem
   context('When upsertItem func excuted once normally with quantity 2', () => {
     it('menuItem length toHaveLength 1 and the quantity is 2', () => {
-      obj.quantity = 2;
-      model = model.upsertItem({ ...obj });
-      expect(model.cartItems).toHaveLength(1);
-      expect(model.cartItems[0].quantity).toBe(2);
+      const obj = { ...cartItem, quantity: 2 };
+      cart = cart.upsertItem(new CartItemModel(obj));
+
+      expect(cart.cartItems).toHaveLength(1);
+      expect(cart.cartItems[0].quantity).toBe(2);
     });
   });
 
   // insertItem
   context('When upsertItem func excuted twice with different menuId', () => {
     it('menuItem length toHaveLength 2', () => {
-      obj.quantity = 1;
-      model = model.upsertItem({ ...obj });
+      cart = cart.upsertItem(new CartItemModel(cartItem));
 
-      obj.menuId = 2;
-      obj.quantity = 1;
-      model = model.upsertItem({ ...obj });
+      const obj = { ...cartItem, menuId: 2, quantity: 1 };
+      cart = cart.upsertItem(new CartItemModel(obj));
 
-      expect(model.cartItems).toHaveLength(2);
+      expect(cart.cartItems).toHaveLength(2);
     });
   });
 
   // updateItem
   context('When upsertItem func excuted twice with same menuId', () => {
     it('menuItem length toHaveLength 2', () => {
-      obj.quantity = 1;
-      model = model.upsertItem({ ...obj });
-      obj.quantity = 2;
-      model = model.upsertItem({ ...obj });
+      cart = cart.upsertItem(new CartItemModel(cartItem));
 
-      expect(model.cartItems).toHaveLength(1);
-      expect(model.cartItems[0].quantity).toBe(3);
+      const obj = { ...cartItem, quantity: 2 };
+      cart = cart.upsertItem(new CartItemModel(obj));
+
+      expect(cart.cartItems).toHaveLength(1);
+      expect(cart.cartItems[0].quantity).toBe(3);
     });
   });
 
   // deleteItem
   context('When deleteItem func excuted but cartItem not exists', () => {
     it('throw NotFoundError', () => {
-      expect(() => model.deleteItem(9999)).toThrow(NotFoundError);
+      expect(() => cart.deleteItem(9999)).toThrow(NotFoundError);
     });
   });
 
   context('When deleteItem func excuted cartItem exists', () => {
     it('the target cartItem removed', () => {
-      model = model.upsertItem({ ...obj });
-      model = model.deleteItem(obj.menuId);
+      cart = cart.upsertItem(new CartItemModel(cartItem));
+      cart = cart.deleteItem(cartItem.menuId);
 
-      expect(model.cartItems.length).toBe(0);
-      expect(() => model.deleteItem(obj.menuId)).toThrow(NotFoundError);
+      expect(cart.cartItems.length).toBe(0);
+      expect(() => cart.deleteItem(cartItem.menuId)).toThrow(NotFoundError);
     });
   });
 
   context('When clearItems func excuted when cartItem not exists', () => {
     it('cartItem length is 0', () => {
-      model = model.clearItems();
-      expect(model.cartItems.length).toBe(0);
+      cart = cart.clearItems();
+
+      expect(cart.cartItems.length).toBe(0);
     });
   });
 
   context('When clearItems func excuted when cartItem exists', () => {
     it('cartItem length is 0', () => {
-      model = model.upsertItem({ ...obj });
-      model = model.clearItems();
-      expect(model.cartItems.length).toBe(0);
+      cart = cart.upsertItem(new CartItemModel(cartItem));
+      cart = cart.clearItems();
+
+      expect(cart.cartItems.length).toBe(0);
     });
   });
 });

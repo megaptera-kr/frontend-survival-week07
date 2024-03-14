@@ -1,13 +1,13 @@
-import MenuModel from './MenuModel';
+import MenuItemModel from './MenuItemModel';
 
-test('MenuModel', () => {
+test('MenuItemModel', () => {
   const obj = {
     id: 1,
     name: '김밥',
     price: 9999,
   };
 
-  const model = new MenuModel(obj);
+  const model = new MenuItemModel(obj);
 
   expect(model).not.toBeNull();
   expect(model.getId()).toBe(obj.id);

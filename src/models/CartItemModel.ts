@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import CartItemType from '../types/CartItemType';
+import MenuItemModel from './MenuItemModel';
+import RestaurantModel from './RestaurantModel';
 
 class CartItemModel {
   readonly id: string;
@@ -36,6 +38,26 @@ class CartItemModel {
     this.restaurantName = restaurantName;
     this.categoryName = categoryName;
     this.quantity = quantity;
+  }
+
+  static makeInstanceHelper({
+    menuItem,
+    restaurant,
+    quantity,
+  }: {
+    menuItem: MenuItemModel;
+    restaurant: RestaurantModel;
+    quantity: number;
+  }): CartItemModel {
+    return new CartItemModel({
+      menuId: menuItem.getId(),
+      menuName: menuItem.getName(),
+      menuPrice: menuItem.getPrice(),
+      restaurantId: restaurant.getId(),
+      restaurantName: restaurant.getName(),
+      categoryName: restaurant.getCategory(),
+      quantity,
+    });
   }
 
   price(): number {

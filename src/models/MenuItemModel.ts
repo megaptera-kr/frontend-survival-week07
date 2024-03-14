@@ -2,7 +2,7 @@ import { moneyformat } from '../utils/common';
 
 import MenuType from '../types/MenuType';
 
-class MenuModel {
+class MenuItemModel {
   #id: number;
 
   #name: string;
@@ -36,4 +36,4 @@ class MenuModel {
   }
 }
 
-export default MenuModel;
+export default MenuItemModel;

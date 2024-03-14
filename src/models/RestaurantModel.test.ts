@@ -1,5 +1,5 @@
 import RestaurantModel from './RestaurantModel';
-import MenuModel from './MenuModel';
+import MenuItemModel from './MenuItemModel';
 import RestaurantType from '../types/RestaurantType';
 
 import fixtures from '../../fixtures';
@@ -16,10 +16,12 @@ test('RestaurantModel', () => {
     expect(restaurantModel.getCategory()).toBe(restaurant.category);
     expect(restaurantModel.getMenu().length).toBe(restaurant.menu.length);
 
-    restaurantModel.getMenu().forEach((menuModel: MenuModel, index: number) => {
-      expect(menuModel.getId()).toBe(restaurant.menu[index].id);
-      expect(menuModel.getName()).toBe(restaurant.menu[index].name);
-      expect(menuModel.getPrice()).toBe(restaurant.menu[index].price);
-    });
+    restaurantModel
+      .getMenu()
+      .forEach((menuItemModel: MenuItemModel, index: number) => {
+        expect(menuItemModel.getId()).toBe(restaurant.menu[index].id);
+        expect(menuItemModel.getName()).toBe(restaurant.menu[index].name);
+        expect(menuItemModel.getPrice()).toBe(restaurant.menu[index].price);
+      });
   });
 });

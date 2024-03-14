@@ -1,6 +1,5 @@
 import CartItemModel from './CartItemModel';
 
-import CartItemType from '../types/CartItemType';
 import BadParamError from '../exceptions/BadParamError';
 import NotFoundError from '../exceptions/NotFoundError';
 
@@ -22,26 +21,11 @@ class CartModel {
     return this.MIN_QUANTITY <= quantity && this.MAX_QUANTITY >= quantity;
   }
 
-  #insertItem({
-    menuId,
-    menuName,
-    menuPrice,
-    restaurantId,
-    restaurantName,
-    categoryName,
-    quantity,
-  }: CartItemType) {
-    const cartItem: CartItemModel = new CartItemModel({
-      menuId,
-      menuName,
-      menuPrice,
-      restaurantId,
-      restaurantName,
-      categoryName,
-      quantity,
-    });
-
-    return new CartModel([...this.cartItems, cartItem]);
+  #insertItem(cartItem: CartItemModel) {
+    return new CartModel([
+      ...this.cartItems,
+      new CartItemModel({ ...cartItem }),
+    ]);
   }
 
   #updateItem({ index, quantity }: { index: number; quantity: number }) {
@@ -57,39 +41,18 @@ class CartModel {
     ]);
   }
 
-  upsertItem({
-    menuId,
-    menuName,
-    menuPrice,
-    restaurantId,
-    restaurantName,
-    categoryName,
-    quantity,
-  }: CartItemType): CartModel {
-    if (!this.validateQuantity(quantity)) {
+  upsertItem(cartItem: CartItemModel): CartModel {
+    if (!this.validateQuantity(cartItem.quantity)) {
       throw new BadParamError('error with quantity');
     }
 
     const index = this.cartItems.findIndex(
-      (cartItem: CartItemModel) => cartItem.menuId === menuId,
+      (item: CartItemModel) => item.menuId === cartItem.menuId,
     );
 
-    if (index < 0) {
-      return this.#insertItem({
-        menuId,
-        menuName,
-        menuPrice,
-        restaurantId,
-        restaurantName,
-        categoryName,
-        quantity,
-      });
-    }
-
-    return this.#updateItem({
-      index,
-      quantity,
-    });
+    return index < 0
+      ? this.#insertItem(cartItem)
+      : this.#updateItem({ index, quantity: cartItem.quantity });
   }
 
   deleteItem(menuId: number) {
