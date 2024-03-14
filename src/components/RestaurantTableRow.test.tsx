@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import RestaurantTableRow from './RestaurantTableRow';
 
 import RestaurantModel from '../models/RestaurantModel';
-import MenuModel from '../models/MenuModel';
+import MenuItemModel from '../models/MenuItemModel';
 
 import fixtures from '../../fixtures';
 
@@ -20,7 +20,7 @@ test('RestaurantTableRow', () => {
   );
 
   screen.getByText(restaurant.getName());
-  restaurant.getMenu().forEach((menuItem: MenuModel) => {
+  restaurant.getMenu().forEach((menuItem: MenuItemModel) => {
     screen.queryByText(menuItem.getNamePrice());
   });
 });

@@ -2,28 +2,33 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import MenuItem from './MenuItem';
 
-import MenuModel from '../models/MenuModel';
+import MenuItemModel from '../models/MenuItemModel';
+import RestaurantModel from '../models/RestaurantModel';
 
 import fixtures from '../../fixtures';
 
 const context = describe;
 
 describe('MenuItem', () => {
-  let model: MenuModel;
+  let menuItem: MenuItemModel;
+  let restaurant: RestaurantModel;
+
+  const { restaurants, menu } = fixtures;
 
   beforeEach(() => {
-    model = new MenuModel(fixtures.menu[0]);
+    menuItem = new MenuItemModel(menu[0]);
+    restaurant = new RestaurantModel(restaurants[0]);
   });
 
   const rendering = () => {
-    render(<MenuItem menuItem={model} />);
+    render(<MenuItem menuItem={menuItem} restaurant={restaurant} />);
   };
 
   context('When MenuItem render', () => {
     it('메뉴 아이템의 이름과 가격이 정상적으로 표시된다.', () => {
       rendering();
 
-      const nameAndPrice: string = model.getNamePrice();
+      const nameAndPrice: string = menuItem.getNamePrice();
 
       screen.getByText(nameAndPrice);
       screen.getByRole('button', { name: nameAndPrice });
@@ -35,12 +40,13 @@ describe('MenuItem', () => {
       rendering();
 
       const button = screen.getByRole('button', {
-        name: model.getNamePrice(),
+        name: menuItem.getNamePrice(),
       });
 
       fireEvent.click(button);
 
       // TODO: check called a function
+      // Td do that should do mocking useCartStore and CartStore
     });
   });
 });

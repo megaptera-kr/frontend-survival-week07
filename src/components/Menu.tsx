@@ -1,11 +1,13 @@
-import MenuModel from '../models/MenuModel';
+import MenuItemModel from '../models/MenuItemModel';
+import RestaurantModel from '../models/RestaurantModel';
 import MenuItem from './MenuItem';
 
 type MenuProps = {
-  menu: MenuModel[];
+  menu: MenuItemModel[];
+  restaurant: RestaurantModel;
 };
 
-export default function Menu({ menu }: MenuProps) {
+export default function Menu({ menu, restaurant }: MenuProps) {
   return (
     <div
       style={{
@@ -17,8 +19,12 @@ export default function Menu({ menu }: MenuProps) {
       {!menu.length ? (
         <p>판매할 수 있는 메뉴가 없습니다.</p>
       ) : (
-        menu.map((item: MenuModel) => (
-          <MenuItem key={item.getId()} menuItem={item} />
+        menu.map((item: MenuItemModel) => (
+          <MenuItem
+            key={item.getId()}
+            menuItem={item}
+            restaurant={restaurant}
+          />
         ))
       )}
     </div>

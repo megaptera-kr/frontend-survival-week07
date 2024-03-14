@@ -18,7 +18,7 @@ export default function RestaurantTableRow({
     <tr>
       <td>{name}</td>
       <td>
-        <Menu menu={menu} />
+        <Menu menu={menu} restaurant={restaurant} />
       </td>
     </tr>
   );

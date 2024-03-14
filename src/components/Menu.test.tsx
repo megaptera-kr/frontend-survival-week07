@@ -1,25 +1,30 @@
 import { render, screen } from '@testing-library/react';
 
-import MenuModel from '../models/MenuModel';
+import MenuItemModel from '../models/MenuItemModel';
 import MenuType from '../types/MenuType';
 
 import fixtures from '../../fixtures';
 import Menu from './Menu';
+import RestaurantModel from '../models/RestaurantModel';
 
 const context = describe;
 
 describe('', () => {
-  let menu: MenuModel[] = [];
+  let menuItems: MenuItemModel[] = [];
+  let restaurant: RestaurantModel;
+
+  const { menu, restaurants } = fixtures;
 
   beforeEach(() => {
-    menu = fixtures.menu.map((item: MenuType) => new MenuModel(item));
+    menuItems = menu.map((item: MenuType) => new MenuItemModel(item));
+    restaurant = new RestaurantModel(restaurants[0]);
   });
 
   context('menu is exists', () => {
     it('메뉴 목록이 정상적으로 표시된다.', () => {
-      render(<Menu menu={menu} />);
+      render(<Menu menu={menuItems} restaurant={restaurant} />);
 
-      menu.forEach((item: MenuModel) => {
+      menuItems.forEach((item: MenuItemModel) => {
         screen.queryByText(item.getNamePrice());
       });
     });
@@ -27,7 +32,7 @@ describe('', () => {
 
   context('menu is not exists', () => {
     it('판매할 수 있는 메뉴가 없습니다 문구가 표시된다.', () => {
-      render(<Menu menu={[]} />);
+      render(<Menu menu={[]} restaurant={restaurant} />);
 
       screen.getByText(/^판매할 수 있는 메뉴가 없습니다.$/);
     });
