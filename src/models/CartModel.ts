@@ -96,7 +96,10 @@ class CartModel {
   // ---------------------------------------------------------------------------
   // Properties
   totalNumItems(): number {
-    return this.cartItems.length;
+    return this.cartItems.reduce(
+      (acc, item: CartItemModel) => acc + item.quantity,
+      0,
+    );
   }
 
   totalPrice(): number {
