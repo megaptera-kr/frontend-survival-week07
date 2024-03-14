@@ -2,13 +2,17 @@ import { singleton } from 'tsyringe';
 import { Store, Action } from 'usestore-ts';
 
 import CartModel from '../models/CartModel';
-
 import CartItemModel from '../models/CartItemModel';
+
+import OrderKindType from '../types/OrderKindType';
+import { ORDER_TYPE_STORE } from '../const/ConstOrder';
 
 @singleton()
 @Store()
 class CartStore {
-  cart = new CartModel();
+  cart: CartModel = new CartModel();
+
+  orderKind: OrderKindType | '' = ORDER_TYPE_STORE;
 
   @Action()
   addItem(cartItem: CartItemModel) {
@@ -23,6 +27,11 @@ class CartStore {
   @Action()
   clearItems() {
     this.cart = this.cart.clearItems();
+  }
+
+  @Action()
+  setOrderType(kind: OrderKindType | '') {
+    this.orderKind = kind;
   }
 }
 
