@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Restaurants from './Restaurants';
 
 import restaurants from '../../fixtures/restaurants';
-import Restaurant from '../Types/Restaurant';
+import Restaurant from '../types/Restaurant';
 
 const context = describe;
 

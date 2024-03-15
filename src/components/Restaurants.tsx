@@ -1,4 +1,4 @@
-import Restaurant from '../Types/Restaurant';
+import Restaurant from '../types/Restaurant';
 import RestaurantRow from './RestaurantRow';
 
 type RestaurantsProps = {

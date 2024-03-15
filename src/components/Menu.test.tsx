@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Menu from './Menu';
 
 import foods from '../../fixtures/foods';
-import Food from '../Types/Food';
+import Food from '../types/Food';
 
 const context = describe;
 

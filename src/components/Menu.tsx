@@ -1,6 +1,6 @@
 import MenuItem from './MenuItem';
 
-import Food from '../Types/Food';
+import Food from '../types/Food';
 
 type MenuItemProps = {
   menus: Food[];

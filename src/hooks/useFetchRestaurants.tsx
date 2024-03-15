@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useState, useEffect } from 'react';
-import Restaurant from '../Types/Restaurant';
+import Restaurant from '../types/Restaurant';
 
 const url = 'http://localhost:3000/restaurants';
 

@@ -1,4 +1,4 @@
-import Food from '../Types/Food';
+import Food from '../types/Food';
 
 type MenuItemProps = {
   menu: Food;
