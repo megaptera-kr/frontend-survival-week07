@@ -12,16 +12,17 @@ import Cart from '../components/Cart';
 function OrderPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const orderKindType = state?.orderKindType;
   const [, cartStore] = useCartStore();
 
-  if (!orderKindType) {
-    navigate('/');
-  }
+  const orderKindType = state?.orderKindType;
 
   useEffect(() => {
-    cartStore.setOrderKind(orderKindType);
-  }, [orderKindType]);
+    if (orderKindType !== '매장 주문' && orderKindType !== '전체 포장') {
+      navigate('/');
+    } else {
+      cartStore.setOrderKind(orderKindType);
+    }
+  }, [orderKindType, cartStore]);
 
   const [searchText, setSearchText] = useSearchText('');
   const [buttonName, setButtonName] = useSetButton('전체');
