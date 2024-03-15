@@ -7,8 +7,8 @@ import { ORDER_TYPE_STORE, ORDER_TYPE_PACKAGE } from '../const/ConstOrder';
 
 const context = describe;
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+jest.mock('react-router', () => ({
+  ...jest.requireActual('react-router'),
   useNavigate: jest.fn(),
 }));
 
@@ -20,15 +20,13 @@ describe('RootButton', () => {
   });
 
   context('render', () => {
-    it('RootButton 이 보여진다.', () => {
+    it('"매장 주문" 버튼이 보여진다.', () => {
       render(<RootButton orderKindType={ORDER_TYPE_STORE} path={path} />);
-
       screen.getByRole('button', { name: ORDER_TYPE_STORE });
     });
 
-    it('RootButton 이 보여진다.', () => {
+    it('"전체 포장" 버튼이 보여진다.', () => {
       render(<RootButton orderKindType={ORDER_TYPE_PACKAGE} path={path} />);
-
       screen.getByRole('button', { name: ORDER_TYPE_PACKAGE });
     });
   });
