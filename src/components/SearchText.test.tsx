@@ -5,8 +5,8 @@ const context = describe;
 
 describe('SearchText', () => {
   const label = '검색';
-  const setSearchTextMock = jest.fn();
   const placeholder = 'Enter text...';
+  const setSearchTextMock = jest.fn();
 
   context('render', () => {
     it('label 과 placeholder 가 올바르게 보인다.', () => {
