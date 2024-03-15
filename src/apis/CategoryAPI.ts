@@ -1,6 +1,6 @@
 import { singleton } from 'tsyringe';
 
-import Category from '../types/CategoryType';
+import CategoryType from '../types/CategoryType';
 
 @singleton()
 class CategoryAPI {
@@ -10,7 +10,7 @@ class CategoryAPI {
     this.url = new URL('http://localhost:3000/categories');
   }
 
-  async select(): Promise<Category[]> {
+  async select(): Promise<CategoryType[]> {
     const response = await fetch(this.url);
     if (!response.ok) {
       throw new Error(`Fail to get data. Status: ${response.status}`);
