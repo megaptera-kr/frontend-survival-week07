@@ -33,7 +33,7 @@ class OrderAPI {
     };
   }
 
-  async create({ cart }: { cart: CartModel }): Promise<ReceiptModel> {
+  async create({ cart }: { cart: CartModel }): Promise<{ orderId: string }> {
     const body = this.#makeBody({ cart });
 
     const response = await fetch(this.url, {

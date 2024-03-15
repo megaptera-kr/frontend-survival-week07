@@ -9,25 +9,25 @@ import ReceiptModel from '../models/ReceiptModel';
 const api = new OrderAPI();
 
 type useOrderReturn = {
-  receipt: ReceiptModel | null;
+  orderId: string;
   handleOrderCreate: () => Promise<void>;
 };
 
 function useOrder(cart: CartModel): useOrderReturn {
   const navigate = useNavigate();
-  const [receipt, setReceipt] = useState<ReceiptModel | null>(null);
+  const [orderId, setOrderId] = useState<string>('');
 
   const handleOrderCreate = async () => {
     if (!cart.cartItems.length) {
       return;
     }
-    const response: ReceiptModel = await api.create({ cart });
-    setReceipt(new ReceiptModel({ ...response }));
+    const response = await api.create({ cart });
+    setOrderId(response.orderId);
     cart.clearItems();
-    navigate('/order/complete');
+    navigate(`/order/complete?orderId=${response.orderId}`);
   };
 
-  return { receipt, handleOrderCreate };
+  return { orderId, handleOrderCreate };
 }
 
 export default useOrder;
