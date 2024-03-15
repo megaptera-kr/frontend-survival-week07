@@ -1,6 +1,7 @@
-import CartItemModel from './CartItemModel';
-
 import OrderKindType from '../types/OrderKindType';
+import { OrderStatusType } from '../types/OrderStatusType';
+import ReceiptType from '../types/ReceiptType';
+import CartItemModel from './CartItemModel';
 
 class ReceiptModel {
   readonly id: string;
@@ -9,23 +10,32 @@ class ReceiptModel {
 
   readonly totalPrice: number;
 
-  readonly menuItems: CartItemModel[];
+  readonly status: OrderStatusType;
+
+  readonly menuItems: CartItemModel[] = [];
+
+  readonly createAt: Date;
+
+  readonly updateAt: Date;
 
   constructor({
     id,
     orderKind,
     totalPrice,
+    status,
     menuItems,
-  }: {
-    id: string;
-    orderKind: OrderKindType;
-    totalPrice: number;
-    menuItems: CartItemModel[];
-  }) {
+    createAt,
+    updateAt,
+  }: ReceiptType) {
     this.id = id;
     this.orderKind = orderKind;
     this.totalPrice = totalPrice;
-    this.menuItems = menuItems;
+    this.status = status;
+    this.createAt = createAt;
+    this.updateAt = updateAt;
+    this.menuItems = menuItems.map(
+      (item: CartItemModel) => new CartItemModel({ ...item }),
+    );
   }
 }
 
