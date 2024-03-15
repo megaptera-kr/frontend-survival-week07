@@ -9,7 +9,7 @@ function OrderDetailPage() {
   const orderId = state?.orderId;
 
   if (!orderId) {
-    return <div>주문 ID를 찾을 수 없습니다.</div>;
+    return <i>주문 ID를 찾을 수 없습니다</i>;
   }
 
   const { receipt } = useReadOrder({ orderId });
