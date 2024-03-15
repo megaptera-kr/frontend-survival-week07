@@ -5,7 +5,7 @@ import CartItem from './CartItemType';
 type Order = {
   id: string;
   orderKind: OrderKind;
-  price: number;
+  totalPrice: number;
   status: OrderStatus;
   menuItems: CartItem[];
   createAt: Date;

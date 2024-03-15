@@ -4,7 +4,7 @@ const orders: Order[] = [
   {
     id: '1710470369910',
     orderKind: '매장 주문',
-    price: 8000,
+    totalPrice: 8000,
     status: '주문완료',
     menuItems: [
       {
