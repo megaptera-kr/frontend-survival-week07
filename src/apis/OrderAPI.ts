@@ -4,7 +4,7 @@ import CartModel from '../models/CartModel';
 import CartItemModel from '../models/CartItemModel';
 
 import OrderKindType from '../types/OrderKindType';
-import ReceiptModel from '../models/ReceiptModel';
+import ReceiptType from '../types/ReceiptType';
 
 @singleton()
 class OrderAPI {
@@ -46,6 +46,15 @@ class OrderAPI {
 
     if (!response.ok) {
       throw new Error(`Fail to create data. Status: ${response.status}`);
+    }
+
+    return response.json();
+  }
+
+  async readOne({ orderId }: { orderId: string }): Promise<ReceiptType> {
+    const response = await fetch(`${this.url}/${orderId}`);
+    if (!response.ok) {
+      throw new Error(`Fail to get data. Status: ${response.status}`);
     }
 
     return response.json();
