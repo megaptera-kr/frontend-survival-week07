@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import { useEffect } from 'react';
 import useCartStore from '../hooks/useCartStore';
@@ -10,9 +10,14 @@ import RestaurantTable from '../components/RestaurantTable';
 import Cart from '../components/Cart';
 
 function OrderPage() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const orderKindType = state?.orderKindType;
   const [, cartStore] = useCartStore();
+
+  if (!orderKindType) {
+    navigate('/');
+  }
 
   useEffect(() => {
     cartStore.setOrderKind(orderKindType);

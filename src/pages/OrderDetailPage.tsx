@@ -1,9 +1,14 @@
 import { useLocation } from 'react-router';
 
 function OrderDetailPage() {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const orderId = params.get('orderId');
+  const { state } = useLocation();
+  const orderId = state?.orderId;
+
+  if (!orderId) {
+    return <div>주문 ID를 찾을 수 없습니다.</div>;
+  }
+
+  console.log(orderId);
 
   return <div>order detail-{orderId}</div>;
 }

@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router';
 
 import useCartStore from '../hooks/useCartStore';
-import useOrder from '../hooks/useOrder';
+import useCreateOrder from '../hooks/useCreateOrder';
 
 import CartItems from './CartItems';
 
 function Cart() {
   const naviagte = useNavigate();
   const [{ cart }, cartStroe] = useCartStore();
-  const { handleOrderCreate } = useOrder(cart);
+  const { handleOrderCreate } = useCreateOrder({ cart });
 
   const handleClickBackButton = () => {
     naviagte('/');
