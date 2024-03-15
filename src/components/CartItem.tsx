@@ -4,9 +4,10 @@ import CartItemModel from '../models/CartItemModel';
 
 type CartItemProps = {
   item: CartItemModel;
+  pageId: string;
 };
 
-export default function CartItem({ item }: CartItemProps) {
+export default function CartItem({ item, pageId = '' }: CartItemProps) {
   const [, cartStore] = useCartStore();
 
   const handleClick = () => {
@@ -19,13 +20,15 @@ export default function CartItem({ item }: CartItemProps) {
       <div>{item.quantity}개</div>
       <div>{item.priceFormatted()}원</div>
       <div>
-        <button
-          type='button'
-          style={{ fontSize: '0.8rem', minWidth: '100px' }}
-          onClick={handleClick}
-        >
-          X
-        </button>
+        {pageId === 'cartItems' && (
+          <button
+            type='button'
+            style={{ fontSize: '0.8rem', minWidth: '100px' }}
+            onClick={handleClick}
+          >
+            X
+          </button>
+        )}
       </div>
     </div>
   );

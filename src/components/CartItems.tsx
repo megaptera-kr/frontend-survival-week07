@@ -1,12 +1,18 @@
+import { HTMLAttributes } from 'react';
 import CartItem from './CartItem';
 
 import CartItemModel from '../models/CartItemModel';
 
 type CarrItemsProps = {
   cartItems: CartItemModel[];
-};
+  pageId: string;
+} & HTMLAttributes<Element>;
 
-export default function CartItems({ cartItems }: CarrItemsProps) {
+export default function CartItems({
+  cartItems,
+  pageId,
+  children,
+}: CarrItemsProps) {
   if (!cartItems.length) {
     return (
       <div
@@ -16,7 +22,11 @@ export default function CartItems({ cartItems }: CarrItemsProps) {
           justifyContent: 'center',
         }}
       >
-        <i>선택한 메뉴가 없습니다.</i>
+        {pageId === 'order-detail' ? (
+          <i>선택한 메뉴가 없습니다.</i>
+        ) : (
+          <i>주문 메뉴가 없습니다.</i>
+        )}
       </div>
     );
   }
@@ -24,8 +34,9 @@ export default function CartItems({ cartItems }: CarrItemsProps) {
   return (
     <>
       {cartItems.map((item: CartItemModel) => (
-        <CartItem key={item.id} item={item} />
+        <CartItem key={item.id} item={item} pageId={pageId} />
       ))}
+      <p>{children}</p>
     </>
   );
 }

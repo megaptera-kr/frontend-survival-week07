@@ -33,7 +33,7 @@ function Cart() {
       </div>
 
       <div>
-        <CartItems cartItems={cart.cartItems} />
+        <CartItems cartItems={cart.cartItems} pageId='cartItems' />
       </div>
 
       <hr />
