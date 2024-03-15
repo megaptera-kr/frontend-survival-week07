@@ -1,10 +1,15 @@
+import { OrderStatus } from './OrderStatusType';
+import { OrderKind } from './OrderKindType';
 import CartItem from './CartItemType';
 
 type Order = {
-  orderKind: string;
-  totalItemNum: number;
-  totalPrice: number;
+  id: string;
+  orderKind: OrderKind;
+  price: number;
+  status: OrderStatus;
   menuItems: CartItem[];
+  createAt: Date;
+  updateAt: Date;
 };
 
 export default Order;

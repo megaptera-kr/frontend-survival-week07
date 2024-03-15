@@ -1,19 +1,29 @@
 import { Express, Request, Response } from 'express';
 
+import orders from '../database/orders.table';
+
+import OrderRequest from '../types/OrderRequestType';
 import Order from '../types/OrderType';
-import Receipt from '../types/ReceiptType';
 
 function OrderController(app: Express) {
-  app.post('/orders', (req: Request<Order>, res: Response) => {
-    const order: Order = req.body;
-    const response: Receipt = {
-      id: Date.now().toString(),
+  app.post('/orders', (req: Request<OrderRequest>, res: Response) => {
+    const order: OrderRequest = req.body;
+
+    const receiptId = Date.now().toString();
+
+    const orderItem: Order = {
+      id: receiptId,
+      price: order.totalPrice,
       orderKind: order.orderKind,
-      totalPrice: order.totalPrice,
+      status: '주문완료',
       menuItems: order.menuItems,
+      createAt: new Date(),
+      updateAt: new Date(),
     };
 
-    res.status(201).send(response);
+    orders.push(orderItem);
+
+    res.status(201).send({ orderId: orderItem.id });
   });
 }
 
