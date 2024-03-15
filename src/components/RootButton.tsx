@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { validatePathFormat } from '../utils/common';
-
 import OrderKindType from '../types/OrderKindType';
 
 type RootButtonProps = {
@@ -15,8 +13,6 @@ function RootButton({ orderKindType, path }: RootButtonProps) {
   const handleClick = () => {
     navigate(`${path}`, { state: { orderKindType } });
   };
-
-  validatePathFormat(path);
 
   return (
     <button
