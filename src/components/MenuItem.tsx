@@ -11,11 +11,10 @@ type MenuItemProps = {
 
 function MenuItem({ menuItem, restaurant }: MenuItemProps) {
   const [, cartStore] = useCartStore();
-  const nameAndPrice = menuItem.getNamePrice();
 
   const handleClick = () => {
     cartStore.addItem(
-      CartItemModel.makeInstanceHelper({ menuItem, restaurant, quantity: 1 }),
+      CartItemModel.makeInstance({ menuItem, restaurant, quantity: 1 }),
     );
   };
 
@@ -25,7 +24,7 @@ function MenuItem({ menuItem, restaurant }: MenuItemProps) {
       name={`#${menuItem.getId()}-${menuItem.getName()}`}
       onClick={handleClick}
     >
-      {nameAndPrice}
+      {menuItem.getNamePrice()}
     </button>
   );
 }

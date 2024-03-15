@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
+import useCartStore from '../hooks/useCartStore';
+
 import MenuItem from './MenuItem';
 
 import MenuItemModel from '../models/MenuItemModel';
@@ -8,6 +10,8 @@ import RestaurantModel from '../models/RestaurantModel';
 import fixtures from '../../fixtures';
 
 const context = describe;
+
+jest.mock('../hooks/useCartStore');
 
 describe('MenuItem', () => {
   let menuItem: MenuItemModel;
@@ -37,6 +41,15 @@ describe('MenuItem', () => {
 
   context('When a menuitem button click', () => {
     it('메뉴 아이템의 버튼이 정상적으로 클릭된다.', () => {
+      const mockCartStoreInstance = {
+        cart: jest.fn(),
+        addItem: jest.fn(),
+      };
+      (useCartStore as jest.Mock).mockReturnValue([
+        mockCartStoreInstance.cart,
+        mockCartStoreInstance,
+      ]);
+
       rendering();
 
       const button = screen.getByRole('button', {
@@ -45,8 +58,7 @@ describe('MenuItem', () => {
 
       fireEvent.click(button);
 
-      // TODO: check called a function
-      // Td do that should do mocking useCartStore and CartStore
+      expect(mockCartStoreInstance.addItem).toHaveBeenCalled();
     });
   });
 });

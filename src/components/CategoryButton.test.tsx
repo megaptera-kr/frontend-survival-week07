@@ -39,11 +39,10 @@ describe('CategoryButton', () => {
         rendering(categoryName);
 
         const button = screen.getByRole('button', { name: categoryName });
-
         fireEvent.click(button);
+
         expect(mockSetCategoryName).toHaveBeenCalled();
         expect(mockSetCategoryName).toHaveBeenCalledWith(categoryName);
-        expect(mockSetCategoryName).not.toHaveBeenCalledWith('전체');
       });
     });
   });

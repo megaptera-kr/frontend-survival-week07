@@ -1,5 +1,4 @@
 type CartItemType = {
-  id: string;
   menuId: number;
   menuName: string;
   menuPrice: number;

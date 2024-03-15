@@ -41,7 +41,7 @@ class CartItemModel {
     this.quantity = quantity;
   }
 
-  static makeInstanceHelper({
+  static makeInstance({
     menuItem,
     restaurant,
     quantity,
