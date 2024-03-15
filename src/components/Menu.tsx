@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import MenuItem from './MenuItem';
 
 import Food from '../types/Food';
+
+import useCartStore from '../hooks/useCartStore';
 
 type MenuItemProps = {
   menus: Food[];
 };
 
 export default function Menu({ menus }: MenuItemProps) {
-  // TODO Store 적용
+  const [_, store] = useCartStore();
+
   const handleClickSelect = (food: Food) => {
-    //
+    store.addMenu(food);
   };
 
   if (!menus.length) {
