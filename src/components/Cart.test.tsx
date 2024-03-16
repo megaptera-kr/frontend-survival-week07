@@ -57,6 +57,7 @@ describe('Cart', () => {
 
       expect(mockNavigate).toHaveBeenCalled();
       expect(mockCartStore.setOrderKind).toHaveBeenCalled();
+      expect(mockCartStore.clearItems).toHaveBeenCalled();
     });
   });
 

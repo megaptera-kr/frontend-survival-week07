@@ -21,7 +21,7 @@ function MenuItem({ menuItem, restaurant }: MenuItemProps) {
   return (
     <button
       type='button'
-      name={`#${menuItem.getId()}-${menuItem.getName()}`}
+      name={`#${restaurant.getName()}-${menuItem.getName()}`}
       onClick={handleClick}
     >
       {menuItem.getNamePrice()}

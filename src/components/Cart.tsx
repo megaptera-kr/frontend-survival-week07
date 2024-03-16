@@ -13,6 +13,7 @@ function Cart() {
   const handleClickBackButton = () => {
     naviagte('/');
     cartStroe.setOrderKind();
+    cartStroe.clearItems();
   };
 
   const handleClickCancel = () => {

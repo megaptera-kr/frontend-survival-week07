@@ -15,6 +15,10 @@ function RestaurantTable({
 }: RestaurantTableProps) {
   const { restaurants } = useFetchRestaurants({ categoryName, restaurantName });
 
+  if (!restaurants.length) {
+    return <i>검색 결과가 없습니다</i>;
+  }
+
   return (
     <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
       <section>
