@@ -1,33 +1,5 @@
 Feature('과제 테스트');
 
-const addMenuToCart = ({ I }) => {
-  I.amOnPage('/');
-
-  I.click('전체 포장');
-  I.click('중식');
-
-  I.see('짜장면');
-  I.see('탕수육');
-  I.see('주문 메뉴가 없습니다');
-  I.see('주문내역 0개');
-  I.see('총 결제 예상금액 0원');
-
-  I.click({ name: '#메가반점-짜장면' });
-  I.wait(1);
-
-  I.see('주문내역 1개');
-  I.see('총 결제 예상금액 8,000원');
-  I.see('짜장면');
-  I.see('1개');
-  I.see('8,000원');
-
-  I.click({ name: '#메가반점-짜장면' });
-  I.wait(1);
-  I.see('짜장면');
-  I.see('2개');
-  I.see('총 결제 예상금액 16,000원');
-};
-
 Scenario('인트로 화면 표시', ({ I }) => {
   I.amOnPage('/');
 
@@ -94,11 +66,60 @@ Scenario('레스토랑 필터링', ({ I }) => {
 });
 
 Scenario('메뉴를 카트에 추가하기', ({ I }) => {
-  addMenuToCart({ I });
+  I.amOnPage('/');
+
+  I.click('전체 포장');
+  I.click('중식');
+
+  I.see('짜장면');
+  I.see('탕수육');
+  I.see('주문 메뉴가 없습니다');
+  I.see('주문내역 0개');
+  I.see('총 결제 예상금액 0원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+
+  I.see('주문내역 1개');
+  I.see('총 결제 예상금액 8,000원');
+  I.see('짜장면');
+  I.see('1개');
+  I.see('8,000원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+  I.see('짜장면');
+  I.see('2개');
+  I.see('총 결제 예상금액 16,000원');
 });
 
 Scenario('메뉴를 카트에 추가 후, 선택한 메뉴 취소하기', ({ I }) => {
-  addMenuToCart({ I });
+  I.amOnPage('/');
+
+  I.click('전체 포장');
+  I.click('중식');
+
+  I.see('짜장면');
+  I.see('탕수육');
+  I.see('주문 메뉴가 없습니다');
+  I.see('주문내역 0개');
+  I.see('총 결제 예상금액 0원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+
+  I.see('주문내역 1개');
+  I.see('총 결제 예상금액 8,000원');
+  I.see('짜장면');
+  I.see('1개');
+  I.see('8,000원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+  I.see('짜장면');
+  I.see('2개');
+  I.see('총 결제 예상금액 16,000원');
+
   I.click('X');
   I.wait(1);
   I.see('주문 메뉴가 없습니다');
@@ -107,7 +128,31 @@ Scenario('메뉴를 카트에 추가 후, 선택한 메뉴 취소하기', ({ I }
 });
 
 Scenario('메뉴를 카트에 추가 후, 전체취소 하기', ({ I }) => {
-  addMenuToCart({ I });
+  I.amOnPage('/');
+
+  I.click('전체 포장');
+  I.click('중식');
+
+  I.see('짜장면');
+  I.see('탕수육');
+  I.see('주문 메뉴가 없습니다');
+  I.see('주문내역 0개');
+  I.see('총 결제 예상금액 0원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+
+  I.see('주문내역 1개');
+  I.see('총 결제 예상금액 8,000원');
+  I.see('짜장면');
+  I.see('1개');
+  I.see('8,000원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+  I.see('짜장면');
+  I.see('2개');
+  I.see('총 결제 예상금액 16,000원');
 
   I.click({ name: '#메가반점-짬뽕' });
   I.click({ name: '#메가반점-차돌짬뽕' });
@@ -125,7 +170,32 @@ Scenario('메뉴를 카트에 추가 후, 전체취소 하기', ({ I }) => {
 Scenario(
   '메뉴를 카트에 추가 -> 뒤로가기 클릭 -> OrderPage 들어가기',
   ({ I }) => {
-    addMenuToCart({ I });
+    I.amOnPage('/');
+
+    I.click('전체 포장');
+    I.click('중식');
+
+    I.see('짜장면');
+    I.see('탕수육');
+    I.see('주문 메뉴가 없습니다');
+    I.see('주문내역 0개');
+    I.see('총 결제 예상금액 0원');
+
+    I.click({ name: '#메가반점-짜장면' });
+    I.wait(1);
+
+    I.see('주문내역 1개');
+    I.see('총 결제 예상금액 8,000원');
+    I.see('짜장면');
+    I.see('1개');
+    I.see('8,000원');
+
+    I.click({ name: '#메가반점-짜장면' });
+    I.wait(1);
+    I.see('짜장면');
+    I.see('2개');
+    I.see('총 결제 예상금액 16,000원');
+
     I.click('뒤로가기');
     I.see('메가테라 푸드코트 키오스크');
     I.see('원하시는 주문을 터치해주세요');
@@ -138,7 +208,32 @@ Scenario(
 );
 
 Scenario('주문하기 ', ({ I }) => {
-  addMenuToCart({ I });
+  I.amOnPage('/');
+
+  I.click('전체 포장');
+  I.click('중식');
+
+  I.see('짜장면');
+  I.see('탕수육');
+  I.see('주문 메뉴가 없습니다');
+  I.see('주문내역 0개');
+  I.see('총 결제 예상금액 0원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+
+  I.see('주문내역 1개');
+  I.see('총 결제 예상금액 8,000원');
+  I.see('짜장면');
+  I.see('1개');
+  I.see('8,000원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+  I.see('짜장면');
+  I.see('2개');
+  I.see('총 결제 예상금액 16,000원');
+
   I.click('주문하기');
   I.wait(1);
 
@@ -152,7 +247,32 @@ Scenario('주문하기 ', ({ I }) => {
 });
 
 Scenario('주문하기 -> 메인화면으로 돌아가기 ', ({ I }) => {
-  addMenuToCart({ I });
+  I.amOnPage('/');
+
+  I.click('전체 포장');
+  I.click('중식');
+
+  I.see('짜장면');
+  I.see('탕수육');
+  I.see('주문 메뉴가 없습니다');
+  I.see('주문내역 0개');
+  I.see('총 결제 예상금액 0원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+
+  I.see('주문내역 1개');
+  I.see('총 결제 예상금액 8,000원');
+  I.see('짜장면');
+  I.see('1개');
+  I.see('8,000원');
+
+  I.click({ name: '#메가반점-짜장면' });
+  I.wait(1);
+  I.see('짜장면');
+  I.see('2개');
+  I.see('총 결제 예상금액 16,000원');
+
   I.click('주문하기');
   I.wait(1);
   I.click('메인화면으로 돌아가기');
