@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 import useReadOrder from '../hooks/useReadOrder';
 import CartItems from '../components/CartItems';
@@ -31,13 +31,11 @@ function OrderDetailPage() {
       <h2>주문목록</h2>
       <CartItems cartItems={receipt.menuItems} pageId='order-detail-page'>
         <div>
-          <p>
-            총액: <span>{receipt.totalPrice}</span>
-          </p>
-          <button type='button' onClick={handleClick}>
-            메인화면으로 돌아가기
-          </button>
+          <span>총가격: {receipt.getMoneyFormatPrice()}원</span>
         </div>
+        <button type='button' onClick={handleClick}>
+          메인화면으로 돌아가기
+        </button>
       </CartItems>
     </div>
   );

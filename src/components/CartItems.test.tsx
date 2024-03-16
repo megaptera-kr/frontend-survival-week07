@@ -16,6 +16,7 @@ describe('CartItems', () => {
   beforeEach(() => {
     mockCartItems = [];
     mockPageId = 'order-detail';
+    jest.clearAllMocks();
   });
 
   const rendering = (cartItems: CartItemModel[], pageId: string) => {

@@ -3,6 +3,8 @@ import { OrderStatusType } from '../types/OrderStatusType';
 import ReceiptType from '../types/ReceiptType';
 import CartItemModel from './CartItemModel';
 
+import { moneyformat } from '../utils/common';
+
 class ReceiptModel {
   readonly id: string;
 
@@ -36,6 +38,10 @@ class ReceiptModel {
     this.menuItems = menuItems.map(
       (item: CartItemModel) => new CartItemModel({ ...item }),
     );
+  }
+
+  getMoneyFormatPrice(): string {
+    return moneyformat(this.totalPrice);
   }
 }
 
