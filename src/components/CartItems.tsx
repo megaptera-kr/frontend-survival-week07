@@ -23,9 +23,9 @@ export default function CartItems({
         }}
       >
         {pageId === 'order-detail' ? (
-          <i>선택한 메뉴가 없습니다.</i>
+          <i>선택한 메뉴가 없습니다</i>
         ) : (
-          <i>주문 메뉴가 없습니다.</i>
+          <i>주문 메뉴가 없습니다</i>
         )}
       </div>
     );

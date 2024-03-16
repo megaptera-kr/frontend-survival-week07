@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import RootButton from './RootButton';
 import { ORDER_TYPE_STORE, ORDER_TYPE_PACKAGE } from '../const/ConstOrder';
