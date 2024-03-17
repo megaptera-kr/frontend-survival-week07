@@ -6,7 +6,7 @@ import Receipt from '../types/Receipt';
 
 const emptyOrder = {} as Receipt;
 
-export default function useFetchReceipt(id) {
+export default function useFetchReceipt(id: string | null) {
   const [order, setOrder] = useState(emptyOrder);
   useEffect(() => {
     const fetchReceipt = async () => {
