@@ -1,3 +1,11 @@
+import FilterResTaurantTable from '../components/FilterableRestaurantTable';
+import Cart from '../components/Cart';
+
 export default function OrderPage() {
-  return <div>주문페이지</div>;
+  return (
+    <div>
+      <FilterResTaurantTable />
+      <Cart />
+    </div>
+  );
 }

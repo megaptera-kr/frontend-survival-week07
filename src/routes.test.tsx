@@ -24,7 +24,12 @@ describe('router', () => {
   context('when the current path is “/order”', () => {
     it('renders the order page', () => {
       renderRouter('/order');
-      screen.getByText('주문페이지');
+      screen.getByText(/전체/);
+      screen.getByText(/검색/);
+      screen.getByText(/취소/);
+      screen.getByText(/주문하기/);
+      screen.getByText(/주문내역/);
+      screen.getByText(/예상금액/);
     });
   });
 

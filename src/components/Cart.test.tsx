@@ -1,5 +1,7 @@
+/* eslint-disable comma-dangle */
 import { render, screen } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router';
 import Cart from './Cart';
 
 import Food from '../types/Food';
@@ -16,7 +18,11 @@ jest.mock('../hooks/useCartStore', () => () => [state]);
 
 describe('Cart', () => {
   function renderCart() {
-    render(<Cart />);
+    render(
+      <MemoryRouter>
+        <Cart />
+      </MemoryRouter>
+    );
   }
 
   it('renders summary', () => {
