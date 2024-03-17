@@ -22,11 +22,13 @@ export default function Cart() {
   };
 
   const handleClickOrder = async () => {
-    store.clear();
+    if (!menu.length) {
+      return;
+    }
     const orderId = await createOrder(menu);
     navigation(`/order/complete?orderId=${orderId}`);
+    store.clear();
   };
-
   return (
     <section>
       <Summary selectedMenu={menu} />
