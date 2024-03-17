@@ -2,11 +2,12 @@
 import { render, screen } from '@testing-library/react';
 
 import { MemoryRouter } from 'react-router';
+
 import Cart from './Cart';
 
-import Food from '../types/Food';
-
 import foods from '../../fixtures/foods';
+
+import Food from '../types/Food';
 
 const context = describe;
 

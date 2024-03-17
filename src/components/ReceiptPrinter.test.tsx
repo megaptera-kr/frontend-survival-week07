@@ -25,7 +25,7 @@ describe('ReceiptPrinter', () => {
   it('renders receipt', () => {
     renderReceiptPrinter();
 
-    screen.getByText('주문이 완료되었습니다.');
+    screen.getByText(/주문이 완료되었습니다/);
     screen.getByText(/13,500/);
     screen.getByText('메인화면으로 돌아가기');
   });
