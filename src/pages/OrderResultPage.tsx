@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useSearchParams } from 'react-router-dom';
 
 import ReceiptPrint from '../components/ReceiptPrinter';
