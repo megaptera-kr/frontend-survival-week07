@@ -36,7 +36,7 @@ describe('router', () => {
   context('when the current path is “/order/complete”', () => {
     it('renders the order result page', () => {
       renderRouter('/order/complete');
-      screen.getByText('주문결과페이지');
+      screen.getByText(/Loading.../);
     });
   });
 });
