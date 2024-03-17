@@ -24,7 +24,7 @@ export default function ReceiptPrint({ order }: ReceiptPrintProps) {
   return (
     <section>
       <div>
-        <h2>주문이 완료되었습니다.</h2>
+        <h2>주문이 완료되었습니다!</h2>
         <p>
           주문번호
           {id}

@@ -10,8 +10,8 @@ export default function OrderButtons() {
 
   return (
     <div>
-      <Button text="🙋🏻‍♀️ 매장 주문" onClick={HandelOnClick} />
-      <Button text="🛍️ 전체 포장" onClick={HandelOnClick} />
+      <Button text="매장 주문" onClick={HandelOnClick} />
+      <Button text="전체 포장" onClick={HandelOnClick} />
     </div>
   );
 }
