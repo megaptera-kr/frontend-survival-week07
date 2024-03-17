@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'reflect-metadata';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import 'whatwg-fetch';
 
 import server from './mocks/server';
