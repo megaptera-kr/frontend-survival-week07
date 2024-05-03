@@ -45,7 +45,28 @@ const restaurants:Restaurant[] = [
       },
     ],
   },
-
+  {
+    id: '3',
+    category: '한식',
+    name: '데브부엌',
+    menu: [
+      {
+        id: '7',
+        name: '제육덮밥',
+        price: 10000,
+      },
+      {
+        id: '8',
+        name: '갈비탕',
+        price: 11000,
+      },
+      {
+        id: '9',
+        name: '돈까스',
+        price: 10000,
+      },
+    ],
+  },
 ];
 
 export default restaurants;
