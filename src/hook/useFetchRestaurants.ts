@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import BASE_URL from '../api';
 import { Restaurant } from '../types/restaurant';
 
 function useFetchRestaurants() {
-  const BASE_URL = 'http://localhost:3000';
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   useEffect(() => {
