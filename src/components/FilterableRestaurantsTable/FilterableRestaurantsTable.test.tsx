@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import FilterableRestaurantsTable from '.';
 import fixture from '../../fixture';
 
+// TODO: MSW 테스트 완료하기
 const { restaurants } = fixture;
 jest.mock('../../hook/useFetchRestaurants', () => () => restaurants);
 
