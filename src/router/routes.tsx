@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router';
 import { IntroPage, OrderPage } from '../pages';
+import ResultPage from '../pages/ResultPage';
 
 function Layout() {
   return (
@@ -25,6 +26,10 @@ const routes = [
       {
         path: '/order',
         element: <OrderPage />,
+      },
+      {
+        path: '/order/complete',
+        element: <ResultPage />,
       },
     ],
   },
