@@ -1,3 +1,4 @@
+import useCartStore from '../../hook/useCartStore';
 import { Restaurant } from '../../types/restaurant';
 import convertKRW from '../../utils/convertKRW';
 
@@ -6,6 +7,7 @@ type RestaurantRowProps = {
 }
 
 function RestaurantRow({ restaurant }:RestaurantRowProps) {
+  const [, cartStore] = useCartStore();
   return (
     <tr>
       <td>{restaurant.name}</td>
@@ -13,7 +15,7 @@ function RestaurantRow({ restaurant }:RestaurantRowProps) {
         <ul>
           {restaurant.menu.map((food) => (
             <li key={food.id}>
-              <button type="button">
+              <button type="button" onClick={() => cartStore.addCart(food)}>
                 {`${food.name} ${convertKRW(food.price)}`}
               </button>
             </li>

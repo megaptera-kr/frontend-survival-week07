@@ -2,10 +2,24 @@ import { render, screen } from '@testing-library/react';
 import SearchBar from '.';
 
 describe('SearchBar 컴포넌트', () => {
-  const categories = ['전체'];
+  const categories = ['전체', '한식'];
+  const filterText = '';
+  const setFilterText = jest.fn();
+  const selectedCategory = '전체';
+  const setSelectedCategory = jest.fn();
+
+  function renderSearchBar() {
+    render(<SearchBar
+      categories={categories}
+      filterText={filterText}
+      setFilterText={setFilterText}
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+    />);
+  }
 
   beforeEach(() => {
-    render(<SearchBar categories={categories} />);
+    renderSearchBar();
   });
 
   it('올바르게 렌더링된다.', () => {

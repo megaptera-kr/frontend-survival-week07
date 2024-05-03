@@ -1,17 +1,33 @@
-import { useRef } from 'react';
+/* eslint-disable react/require-default-props */
+import { ChangeEvent, useRef } from 'react';
 
 type TextFieldProps = {
   label:string;
-  // eslint-disable-next-line react/require-default-props
   placeholder?:string
+  filterText?:string;
+  setFilterText?:(text:string) => void
 }
 
-function TextField({ label, placeholder }:TextFieldProps) {
+function TextField({
+  label, placeholder, filterText, setFilterText,
+}:TextFieldProps) {
   const id = useRef(`input-${label}`);
+  const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    if (setFilterText) {
+      setFilterText(value);
+    }
+  };
   return (
     <div>
       <label htmlFor={id.current}>{label}</label>
-      <input type="text" id={id.current} placeholder={placeholder} />
+      <input
+        type="text"
+        id={id.current}
+        placeholder={placeholder}
+        value={filterText}
+        onChange={handleChange}
+      />
     </div>
   );
 }

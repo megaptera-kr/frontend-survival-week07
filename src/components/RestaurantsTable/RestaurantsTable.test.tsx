@@ -7,6 +7,7 @@ describe('RestaurantsTable 컴포넌트', () => {
   beforeEach(() => {
     render(<RestaurantsTable restaurants={restaurants} />);
   });
+
   it('올바르게 렌더링된다.', () => {
     screen.getByText(/짜장면/);
   });
