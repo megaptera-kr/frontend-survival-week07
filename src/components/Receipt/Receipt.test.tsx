@@ -1,4 +1,6 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import Receipt from '.';
 import fixture from '../../fixture';
 
@@ -57,6 +59,14 @@ describe('Receipt 컴포넌트', () => {
       const xButtons = screen.getAllByText('X');
       expect(xButtons).toHaveLength(menu.length);
     });
+    it('주문버튼 클릭하여 결과페이지로 이동한다.', async () => {
+      const submitButton = screen.getByText('주문하기');
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(goToResult).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 
   context('주문내역이 빈 배열이라면', () => {
@@ -70,6 +80,13 @@ describe('Receipt 컴포넌트', () => {
     });
     it('총 결제 예상금액 0원을 렌더링한다.', () => {
       screen.getByText(/0원/);
+    });
+    it('주문 버튼클릭해도 아무런 반응이 없다.', () => {
+      const submitButton = screen.getByText('주문하기');
+      fireEvent.click(submitButton);
+
+      const receipt = screen.queryByText('주문내역');
+      expect(receipt).not.toBeInTheDocument();
     });
   });
 });
