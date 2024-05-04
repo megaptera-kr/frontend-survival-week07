@@ -12,28 +12,32 @@ jest.mock('../../hook/useCartStore', () => () => [
 ]);
 
 const goToIntro = jest.fn();
+const goToResult = jest.fn();
 
 const context = describe;
+function renderReceipt() {
+  return render(<Receipt goToIntro={goToIntro} goToResult={goToResult} />);
+}
 describe('Receipt 컴포넌트', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('올바르게 렌더링 된다.', () => {
-    render(<Receipt goToIntro={goToIntro} />);
+    renderReceipt();
     screen.getByText('취소');
     screen.getByText('주문하기');
   });
 
   context('취소버튼을 클릭하면', () => {
     it('인트로 페이지로 이동한다.', () => {
-      render(<Receipt goToIntro={goToIntro} />);
+      renderReceipt();
       fireEvent.click(screen.getByText('취소'));
       expect(goToIntro).toHaveBeenCalledTimes(1);
     });
 
     it('주문내역을 초기화한다.', () => {
-      const { unmount } = render(<Receipt goToIntro={goToIntro} />);
+      const { unmount } = renderReceipt();
       unmount();
       expect(clearCart).toHaveBeenCalledTimes(1);
     });
@@ -41,7 +45,7 @@ describe('Receipt 컴포넌트', () => {
 
   context('주문내역이 빈 배열이 아니라면', () => {
     beforeEach(() => {
-      render(<Receipt goToIntro={goToIntro} />);
+      renderReceipt();
     });
 
     it('주문한 음식을 렌더링한다.', () => {
@@ -58,7 +62,7 @@ describe('Receipt 컴포넌트', () => {
   context('주문내역이 빈 배열이라면', () => {
     beforeEach(() => {
       menu = [];
-      render(<Receipt goToIntro={goToIntro} />);
+      renderReceipt();
     });
 
     it('주문내역 0개를 렌더링한다.', () => {
