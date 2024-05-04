@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router';
+import fixture from '../fixture';
 import routes from './routes';
+
+const { order } = fixture;
+jest.mock('../hook/useFetchOrder', () => () => order);
 
 function renderRouter(path:string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
@@ -15,7 +19,7 @@ describe('Routes', () => {
     });
 
     it('Intro 페이지를 렌더링한다.', () => {
-      screen.getByText('원하시는 주문을 터치해주세요');
+      expect(screen.getByText('원하시는 주문을 터치해주세요')).toBeInTheDocument();
     });
   });
 
@@ -25,28 +29,17 @@ describe('Routes', () => {
     });
 
     it('Order 페이지를 렌더링한다.', () => {
-      screen.queryByText('원하시는 주문을 터치해주세요');
+      expect(screen.queryByText('원하시는 주문을 터치해주세요')).not.toBeInTheDocument();
     });
   });
 
-  context('경로가 /order/complete이면', () => {
+  context('경로가 /order/complete?orderId={orderId}이면', () => {
     beforeEach(() => {
-      renderRouter('/order/complete');
+      renderRouter(`/order/complete?orderId=${order.id}`);
     });
 
-    it('빈 페이지를 렌더링한다.', () => {
-      expect(screen.queryByText('주문이 완료되었습니다!')).not.toBeInTheDocument();
+    it('Result 페이지를 렌더링한다.', () => {
+      expect(screen.getByText('주문이 완료되었습니다!')).toBeInTheDocument();
     });
   });
-
-  // TODO: 라우트 테스트 완료하기
-  // context('경로가 /order/complete?orderId={orderId}이면', () => {
-  //   beforeEach(() => {
-  //     renderRouter(`/order/complete?orderId=${123456789}`);
-  //   });
-
-  //   it('Result 페이지를 렌더링한다.', () => {
-  //     screen.getByText('주문이 완료되었습니다!');
-  //   });
-  // });
 });
