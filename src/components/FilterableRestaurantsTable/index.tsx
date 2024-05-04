@@ -10,7 +10,7 @@ function FilterableRestaurantsTable() {
   const [filterText, setFilterText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<Category>('전체');
 
-  const restaurants = useFetchRestaurants();
+  const { restaurants, error } = useFetchRestaurants();
   const categories = getUniqueCategory(restaurants);
 
   const filteredRestaurants = filterRestaurantsByQuery(
@@ -26,6 +26,8 @@ function FilterableRestaurantsTable() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+
+      {error && <p>{error}</p>}
       <RestaurantsTable restaurants={filteredRestaurants} />
     </div>
   );

@@ -1,8 +1,11 @@
 import {
   fireEvent, render, screen, waitFor,
 } from '@testing-library/react';
+import { rest } from 'msw';
 import FilterableRestaurantsTable from '.';
+import BASE_URL from '../../api';
 import fixture from '../../fixture';
+import server from '../../mocks/server';
 
 const { restaurants } = fixture;
 
@@ -13,6 +16,18 @@ function renderFilterableRestaurantsTable() {
 describe('FilterableRestaurantsTable 컴포넌트', () => {
   beforeEach(() => {
     renderFilterableRestaurantsTable();
+  });
+
+  context('데이터 응답이 실패하면', () => {
+    beforeEach(() => {
+      server.use(
+        rest.get(`${BASE_URL}/restaurants`, (req, res, ctx) => res(ctx.status(500))),
+      );
+    });
+    it('식당을 불러오지 못했습니다.를 렌더링한다.', async () => {
+      const errorMsg = await screen.findByText('식당을 불러오지 못했습니다.');
+      expect(errorMsg).toBeInTheDocument();
+    });
   });
 
   context('데이터 응답에 성공하여 올바르게 렌더링 된다면', () => {
